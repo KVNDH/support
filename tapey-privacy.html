@@ -1,203 +1,984 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tapey — Privacy Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f7f3ee;
+      --plaster: #ede8e1;
+      --border: #d8d0c6;
+      --ink: #2e2820;
+      --ink-soft: #5c5347;
+      --ink-faint: #9a9088;
+      --accent: #8b7355;
+      --accent-light: #c4aa88;
+      --tape: #d4b896;
+    }
+
+    html { background: var(--cream); color: var(--ink); }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f5f7;
-      color: #1d1d1f;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
     }
 
+    /* ── TAPE STRIP ── */
+    .tape-strip {
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--tape) 0, var(--tape) 48px,
+        transparent 48px, transparent 56px
+      );
+      opacity: 0.7;
+      margin-bottom: 0;
+    }
+
+    /* ── HEADER ── */
     header {
-      background: #fff;
-      border-bottom: 1px solid #e5e5ea;
-      padding: 20px 24px;
+      padding: 36px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
     }
 
-    header a {
-      font-size: 13px;
-      color: #0071e3;
-      text-decoration: none;
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    header a:hover { text-decoration: underline; }
-
-    header h1 {
-      font-size: 18px;
+    .wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 2.5rem;
       font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .wordmark span {
+      color: var(--accent);
+    }
+
+    .tagline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
       margin-top: 6px;
     }
 
-    header p {
-      font-size: 12px;
-      color: #86868b;
-      margin-top: 2px;
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: flex-start;
+      justify-content: flex-end;
+      max-width: 260px;
     }
 
-    main {
-      max-width: 680px;
-      margin: 48px auto;
-      padding: 0 24px;
-      flex: 1;
+    .lang-btn {
+      font-size: 0.72rem;
+      font-family: inherit;
+      padding: 4px 8px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      white-space: nowrap;
     }
 
-    .lang-section {
-      background: #fff;
-      border-radius: 16px;
-      padding: 32px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    .lang-btn:hover {
+      background: var(--plaster);
+      border-color: var(--accent-light);
+      color: var(--ink);
     }
 
-    .lang-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #86868b;
-      margin-bottom: 20px;
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
     }
 
+    /* ── CONTENT SECTIONS ── */
+    .lang-section { display: none; }
+    .lang-section.visible { display: block; }
+
+    /* ── INTRO ── */
+    .app-desc {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* ── SECTION HEADINGS ── */
     h2 {
-      font-size: 17px;
-      font-weight: 700;
-      margin-top: 24px;
-      margin-bottom: 8px;
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--border);
     }
 
-    h2:first-of-type { margin-top: 0; }
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 18px 0 8px;
+    }
 
-    p {
-      font-size: 14px;
+    /* ── POLICY BLOCKS ── */
+    .policy-block {
+      margin-bottom: 40px;
+    }
+
+    .policy-block p {
+      font-size: 0.93rem;
+      color: var(--ink-soft);
+      margin-bottom: 10px;
       line-height: 1.7;
-      color: #3a3a3c;
     }
 
-    ul { margin: 8px 0 0 20px; }
-
-    ul li {
-      font-size: 14px;
+    .policy-block ul {
+      font-size: 0.93rem;
+      color: var(--ink-soft);
       line-height: 1.7;
-      color: #3a3a3c;
+      padding-left: 20px;
+      margin-bottom: 10px;
     }
 
-    a.inline { color: #0071e3; text-decoration: none; }
-    a.inline:hover { text-decoration: underline; }
+    .policy-block ul li {
+      margin-bottom: 4px;
+    }
 
+    .policy-block a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── HIGHLIGHT CARD ── */
+    .highlight-card {
+      background: var(--plaster);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 12px 0 16px;
+    }
+
+    .highlight-card p {
+      margin-bottom: 0 !important;
+    }
+
+    /* ── CONTACT ── */
     .contact {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid #f0f0f0;
-      font-size: 13px;
-      color: #86868b;
+      background: var(--plaster);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
     }
 
-    .contact a { color: #0071e3; text-decoration: none; }
+    .contact h2 { border-bottom-color: var(--border); }
+
+    .contact p {
+      font-size: 0.93rem;
+      color: var(--ink-soft);
+      margin-bottom: 10px;
+    }
+
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
     .contact a:hover { text-decoration: underline; }
 
-    footer {
-      text-align: center;
-      padding: 32px 24px;
-      font-size: 12px;
-      color: #aeaeb2;
+    /* ── EFFECTIVE DATE ── */
+    .effective-date {
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+      margin-bottom: 32px;
     }
 
-    footer a { color: #aeaeb2; }
+    /* ── FOOTER ── */
+    footer {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      .wordmark { font-size: 2rem; }
+      .lang-switcher { max-width: 100%; justify-content: flex-start; }
+      .header-top { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
 
+<div class="tape-strip"></div>
+
 <header>
-  <a href="/support/tapey.html">← Tapey</a>
-  <h1>Tapey 개인정보처리방침 / Privacy Policy</h1>
-  <p>Last updated: 10 June 2026</p>
+  <div class="header-top">
+    <div>
+      <div class="wordmark">Tape<span>y</span></div>
+      <div class="tagline" id="header-tagline">Privacy Policy</div>
+    </div>
+    <nav class="lang-switcher" aria-label="Language">
+      <button class="lang-btn active" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="ko">한국어</button>
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="zh">简体中文</button>
+      <button class="lang-btn" data-lang="zt">繁體中文</button>
+      <button class="lang-btn" data-lang="th">ภาษาไทย</button>
+      <button class="lang-btn" data-lang="id">Indonesia</button>
+      <button class="lang-btn" data-lang="es">Español</button>
+      <button class="lang-btn" data-lang="pt">Português</button>
+    </nav>
+  </div>
 </header>
 
-<main>
+<!-- ═══════════════════════════════════════════════════════════ EN -->
+<section class="lang-section visible" data-lang="en">
+  <p class="effective-date">Effective date: June 10, 2026</p>
 
-  <!-- 한국어 -->
-  <div class="lang-section">
-    <p class="lang-label">한국어</p>
+  <p class="app-desc">Tapey is built around one principle: your photos stay on your device. This policy explains what data is collected, by whom, and how it is used.</p>
 
-    <h2>핵심 요약</h2>
-    <p>Tapey는 사진을 기기 안에서만 처리합니다. 여러분의 사진은 어떤 서버에도 업로드하거나 저장하지 않습니다. 무료 운영을 위해 광고(Google AdMob)를 사용하며, 이 과정에서 광고 식별자 등 일부 데이터가 수집될 수 있습니다.</p>
-
-    <h2>사진 및 작업 데이터</h2>
-    <p>불러온 사진, 배치·설정 등 작업 내용은 전적으로 기기 안에서만 처리·저장(브라우저 저장소/IndexedDB)됩니다. 개발자나 제3자가 이 데이터에 접근하지 않으며, 외부로 전송되지 않습니다. 앱을 삭제하면 기기에 저장된 작업 데이터도 함께 삭제됩니다.</p>
-
-    <h2>광고를 통해 수집되는 정보</h2>
-    <p>무료 제공을 위해 Google AdMob을 통한 광고를 표시합니다. 광고 제공·측정을 위해 다음이 수집·이용될 수 있습니다:</p>
-    <ul>
-      <li>광고 식별자(IDFA) 등 기기 식별자</li>
-      <li>기기 정보 및 광고와의 상호작용 등 사용 데이터</li>
-    </ul>
-    <p>이 정보는 광고 게재 및 성과 측정 목적으로만 사용되며, 계정·이름·이메일과 연결되지 않습니다(앱은 로그인을 요구하지 않습니다).</p>
-
-    <h2>추적 동의(App Tracking Transparency)</h2>
-    <p>iOS에서 맞춤형 광고를 위해 추적 권한을 요청할 수 있습니다. 거부하셔도 앱의 모든 기능을 그대로 사용할 수 있으며, 비맞춤형 광고가 표시될 수 있습니다.</p>
-
-    <h2>제3자 제공</h2>
-    <p>광고 제공을 위해 Google AdMob을 사용합니다. 관련 데이터 처리는 Google의 정책을 따릅니다: <a class="inline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a>. 그 밖에는 법령에 의한 경우를 제외하고 제3자에게 정보를 제공하지 않습니다.</p>
-
-    <h2>아동</h2>
-    <p>이 앱은 특별히 아동을 대상으로 하지 않습니다.</p>
-
-    <h2>변경 사항</h2>
-    <p>본 방침이 변경되면 이 페이지에 업데이트합니다.</p>
-
-    <div class="contact">
-      문의: <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a>
-    </div>
+  <div class="policy-block">
+    <h2>1. Introduction</h2>
+    <p>Tapey ("we", "our", "the app") is an iPhone app that lets you arrange your photos into a gallery-wall wallpaper. Your privacy matters to us. We do not run servers, we do not store your photos, and we do not know who you are.</p>
   </div>
 
-  <!-- English -->
-  <div class="lang-section">
-    <p class="lang-label">English</p>
+  <div class="policy-block">
+    <h2>2. Data We Collect</h2>
 
-    <h2>Summary</h2>
-    <p>Tapey processes your photos entirely on your device. Your photos are never uploaded to or stored on any server. To keep the app free, it shows ads (Google AdMob), and some data such as an advertising identifier may be collected in that process.</p>
-
-    <h2>Photos and Project Data</h2>
-    <p>Imported photos, layouts, and settings are processed and stored solely on your device (browser storage / IndexedDB). Neither the developer nor any third party can access this data, and it is never transmitted off the device. Deleting the app also deletes this on-device data.</p>
-
-    <h2>Information Collected Through Ads</h2>
-    <p>The app displays ads via Google AdMob to remain free. For ad delivery and measurement, the following may be collected and used:</p>
-    <ul>
-      <li>Device identifiers such as the advertising identifier (IDFA)</li>
-      <li>Usage data such as device information and ad interactions</li>
-    </ul>
-    <p>This information is used only for serving and measuring ads, and is not linked to an account, name, or email (the app requires no sign-in).</p>
-
-    <h2>App Tracking Transparency</h2>
-    <p>On iOS, the app may request tracking permission for personalized ads. You can decline and still use every feature; non-personalized ads may be shown instead.</p>
-
-    <h2>Third-Party Sharing</h2>
-    <p>We use Google AdMob to serve ads; related data handling follows Google’s policy: <a class="inline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>. Otherwise, information is not shared with third parties except as required by law.</p>
-
-    <h2>Children</h2>
-    <p>This app is not specifically directed to children.</p>
-
-    <h2>Changes</h2>
-    <p>If this policy changes, we will update this page.</p>
-
-    <div class="contact">
-      Contact: <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a>
+    <h3>2a. Data collected by us</h3>
+    <div class="highlight-card">
+      <p><strong>None.</strong> Photos you add, wallpapers you create, and app settings are stored only on your device (in device storage / IndexedDB). They are never transmitted to any server, never seen by us, and are deleted when you uninstall the app.</p>
     </div>
+    <p>We have no user accounts, no registration, and no analytics SDK of our own.</p>
+
+    <h3>2b. Data collected by Google AdMob (third party)</h3>
+    <p>Tapey is free and supported by ads. When you save a wallpaper, a short interstitial ad may appear, served by <strong>Google AdMob</strong>. AdMob may collect:</p>
+    <ul>
+      <li>Device identifier (IDFA — Identifier for Advertisers)</li>
+      <li>App interaction data (e.g. ad impressions, taps)</li>
+      <li>Crash and diagnostic data</li>
+    </ul>
+    <p>This data is collected and processed by Google, not by us. Google's privacy policy applies: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+    <p>IDFA is only used for personalised ads <strong>if you grant permission</strong> via the App Tracking Transparency (ATT) prompt (see Section 4). If you decline, only non-personalised ads are shown and IDFA is not used for targeting.</p>
   </div>
 
-</main>
+  <div class="policy-block">
+    <h2>3. How Data Is Used</h2>
+    <p>We do not use any data because we do not collect any.</p>
+    <p>Google AdMob uses the data it collects to serve and measure ads, improve ad quality, and for fraud prevention. We receive only aggregate, anonymised revenue reports — no personally identifiable information.</p>
+  </div>
 
-<footer>
-  © 2026 kvndh · <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a>
-</footer>
+  <div class="policy-block">
+    <h2>4. App Tracking Transparency (ATT)</h2>
+    <p>On first launch, iOS will show a system prompt asking whether Tapey may track your activity across other apps and websites. This permission controls whether your IDFA can be used for personalised advertising by AdMob.</p>
+    <ul>
+      <li><strong>If you allow:</strong> AdMob may use your IDFA to show ads that are more relevant to you.</li>
+      <li><strong>If you decline:</strong> Only non-personalised ads are shown. AdMob may still collect non-identifying data (e.g. crash reports).</li>
+    </ul>
+    <p>You can change this choice at any time in <strong>Settings &rsaquo; Privacy &amp; Security &rsaquo; Tracking</strong>.</p>
+  </div>
 
+  <div class="policy-block">
+    <h2>5. Data Retention &amp; Deletion</h2>
+    <p>All data stored by Tapey (your photos, settings, and wallpaper history) exists only on your device and is deleted automatically when you uninstall the app.</p>
+    <p>Data collected by Google AdMob is retained per Google's own policies. Please refer to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> for details on retention and deletion.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>6. Children's Privacy</h2>
+    <p>Tapey is rated 4+ on the App Store. We do not knowingly collect personal information from children under 13. Because we collect no data ourselves, there is no special risk to children from our side. AdMob's child-directed settings are respected per Google's policies.</p>
+  </div>
+
+  <div class="contact">
+    <h2>7. Contact Us</h2>
+    <p>Questions about this privacy policy? Please reach out — we read every message.</p>
+    <p>Email: <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a></p>
+    <p>Support: <a href="https://kvndh.github.io/support/tapey.html">kvndh.github.io/support/tapey.html</a></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>8. Changes to This Policy</h2>
+    <p>If we make material changes to this policy, we will update this page and revise the effective date at the top. We encourage you to review this page periodically.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey.html">Support</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ KO -->
+<section class="lang-section" data-lang="ko">
+  <p class="effective-date">시행일: 2026년 6월 10일</p>
+
+  <p class="app-desc">Tapey는 한 가지 원칙 위에 만들어졌습니다. 사진은 기기 안에 머뭅니다. 이 정책은 어떤 데이터가 누구에 의해 수집되고 어떻게 사용되는지를 설명합니다.</p>
+
+  <div class="policy-block">
+    <h2>1. 소개</h2>
+    <p>Tapey("저희", "앱")는 사진을 갤러리월 배경화면으로 만들어주는 iPhone 앱입니다. 저희는 서버를 운영하지 않고, 사진을 저장하지 않으며, 누구인지 알지 못합니다.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>2. 수집하는 데이터</h2>
+
+    <h3>2a. 저희가 수집하는 데이터</h3>
+    <div class="highlight-card">
+      <p><strong>없음.</strong> 추가한 사진, 만든 배경화면, 앱 설정은 모두 기기(기기 저장소 / IndexedDB)에만 저장됩니다. 서버로 전송되거나 저희가 열람하지 않으며, 앱을 삭제하면 함께 지워집니다.</p>
+    </div>
+    <p>계정이나 회원가입이 없으며, 자체 분석 SDK도 사용하지 않습니다.</p>
+
+    <h3>2b. Google AdMob(제3자)이 수집하는 데이터</h3>
+    <p>Tapey는 무료 앱으로, 광고로 운영됩니다. 배경화면을 저장할 때 <strong>Google AdMob</strong>이 제공하는 짧은 전면 광고가 표시될 수 있습니다. AdMob이 수집할 수 있는 정보:</p>
+    <ul>
+      <li>기기 식별자(IDFA — 광고 식별자)</li>
+      <li>앱 상호작용 데이터(예: 광고 노출, 탭)</li>
+      <li>충돌 및 진단 데이터</li>
+    </ul>
+    <p>이 데이터는 저희가 아닌 Google이 수집·처리합니다. Google의 개인정보처리방침이 적용됩니다: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+    <p>IDFA는 앱 추적 투명성(ATT) 팝업에서 <strong>허용을 선택한 경우에만</strong> 맞춤 광고에 사용됩니다. 거부 시에는 비개인화 광고만 표시되며 IDFA는 타겟팅에 사용되지 않습니다.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>3. 데이터 사용 방법</h2>
+    <p>저희는 데이터를 수집하지 않기 때문에 사용하지도 않습니다.</p>
+    <p>Google AdMob은 수집한 데이터를 광고 제공·측정, 광고 품질 개선, 부정 방지에 사용합니다. 저희는 익명화된 수익 합계 보고서만 받으며, 개인을 식별할 수 있는 정보는 받지 않습니다.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>4. 앱 추적 투명성(ATT)</h2>
+    <p>처음 실행 시 iOS가 시스템 팝업을 표시하며, Tapey가 다른 앱 및 웹사이트에서 사용자의 활동을 추적할 수 있는지 묻습니다. 이 권한은 AdMob이 맞춤 광고에 IDFA를 사용할 수 있는지를 결정합니다.</p>
+    <ul>
+      <li><strong>허용한 경우:</strong> AdMob이 IDFA를 사용해 관련성 높은 광고를 표시할 수 있습니다.</li>
+      <li><strong>거부한 경우:</strong> 비개인화 광고만 표시됩니다. AdMob은 여전히 충돌 보고 등 비식별 데이터를 수집할 수 있습니다.</li>
+    </ul>
+    <p>언제든지 <strong>설정 &rsaquo; 개인정보 보호 및 보안 &rsaquo; 추적</strong>에서 변경할 수 있습니다.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>5. 데이터 보존 및 삭제</h2>
+    <p>Tapey가 저장하는 데이터(사진, 설정, 배경화면 기록)는 기기에만 존재하며, 앱을 삭제하면 자동으로 지워집니다.</p>
+    <p>Google AdMob이 수집한 데이터는 Google의 자체 정책에 따라 보존됩니다. 자세한 내용은 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a>을 참고하세요.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>6. 아동 개인정보</h2>
+    <p>Tapey는 App Store 연령등급 4+입니다. 저희는 13세 미만 아동의 개인정보를 의도적으로 수집하지 않습니다. 저희가 데이터를 수집하지 않기 때문에 저희 측에서 아동에게 발생하는 특별한 위험은 없습니다. AdMob의 아동용 설정은 Google의 정책에 따라 준수됩니다.</p>
+  </div>
+
+  <div class="contact">
+    <h2>7. 문의</h2>
+    <p>이 개인정보처리방침에 대한 질문이 있으신가요? 모든 메시지를 읽고 답변드립니다.</p>
+    <p>이메일: <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a></p>
+    <p>지원: <a href="https://kvndh.github.io/support/tapey.html">kvndh.github.io/support/tapey.html</a></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>8. 정책 변경</h2>
+    <p>정책을 중요하게 변경하는 경우, 이 페이지를 업데이트하고 상단의 시행일을 수정합니다. 정기적으로 이 페이지를 확인해 주세요.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey.html">지원</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ JA -->
+<section class="lang-section" data-lang="ja">
+  <p class="effective-date">発効日：2026年6月10日</p>
+
+  <p class="app-desc">Tapeyは一つの原則のもとに作られています――あなたの写真はあなたのデバイスに留まります。このポリシーは、どのようなデータが誰によって収集され、どのように使用されるかを説明します。</p>
+
+  <div class="policy-block">
+    <h2>1. はじめに</h2>
+    <p>Tapey（以下「本アプリ」）は、写真をギャラリーウォール壁紙に仕上げるiPhoneアプリです。プライバシーは大切にしています。私たちはサーバーを運営せず、写真を保存せず、あなたが誰であるかも知りません。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>2. 収集するデータ</h2>
+
+    <h3>2a. 私たちが収集するデータ</h3>
+    <div class="highlight-card">
+      <p><strong>なし。</strong>追加した写真、作成した壁紙、アプリ設定はすべてデバイス上（端末ストレージ / IndexedDB）のみに保存されます。サーバーに送信されることも、私たちが閲覧することもなく、アプリを削除すれば自動的に消去されます。</p>
+    </div>
+    <p>ユーザーアカウントも登録も不要で、独自の分析SDKも使用していません。</p>
+
+    <h3>2b. Google AdMob（第三者）が収集するデータ</h3>
+    <p>Tapeyは無料アプリで、広告によって運営されています。壁紙を保存する際、<strong>Google AdMob</strong>が提供する短い全画面広告が表示される場合があります。AdMobが収集する可能性のある情報：</p>
+    <ul>
+      <li>デバイス識別子（IDFA — 広告識別子）</li>
+      <li>アプリ操作データ（例：広告の表示回数、タップ）</li>
+      <li>クラッシュおよび診断データ</li>
+    </ul>
+    <p>このデータは私たちではなくGoogleが収集・処理します。Googleのプライバシーポリシーが適用されます：<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+    <p>IDFAは、アプリ追跡の透明性（ATT）プロンプトで<strong>許可を選択した場合のみ</strong>、パーソナライズ広告に使用されます。拒否した場合は非パーソナライズ広告のみが表示され、IDFAはターゲティングに使用されません。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>3. データの使用方法</h2>
+    <p>私たちはデータを収集しないため、使用もしません。</p>
+    <p>Google AdMobは収集したデータを、広告の配信・計測、広告品質の向上、不正防止のために使用します。私たちが受け取るのは匿名化された収益の集計レポートのみで、個人を特定できる情報は含まれません。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>4. アプリ追跡の透明性（ATT）</h2>
+    <p>初回起動時、iOSが「Tapeyが他のアプリやウェブサイトでのアクティビティを追跡することを許可しますか？」というシステムプロンプトを表示します。この許可は、AdMobがパーソナライズ広告にIDFAを使用できるかどうかを決定します。</p>
+    <ul>
+      <li><strong>許可する場合：</strong>AdMobがIDFAを使用して、あなたに関連性の高い広告を表示できます。</li>
+      <li><strong>拒否する場合：</strong>非パーソナライズ広告のみが表示されます。AdMobはクラッシュレポートなど非識別データを収集する場合があります。</li>
+    </ul>
+    <p>設定はいつでも<strong>設定 &rsaquo; プライバシーとセキュリティ &rsaquo; トラッキング</strong>から変更できます。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>5. データの保存と削除</h2>
+    <p>Tapeyが保存するデータ（写真、設定、壁紙履歴）はデバイス上にのみ存在し、アプリをアンインストールすると自動的に削除されます。</p>
+    <p>Google AdMobが収集したデータはGoogleのポリシーに基づいて保存されます。詳細は<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Googleのプライバシーポリシー</a>をご確認ください。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>6. 子どものプライバシー</h2>
+    <p>TapeyはApp Storeで年齢制限4+に設定されています。私たちは13歳未満の子どもから意図的に個人情報を収集することはありません。私たちがデータを収集しないため、私たちの側から子どもへの特別なリスクはありません。AdMobの子ども向け設定はGoogleのポリシーに従って遵守されます。</p>
+  </div>
+
+  <div class="contact">
+    <h2>7. お問い合わせ</h2>
+    <p>このプライバシーポリシーについてご質問がありますか？すべてのメッセージを読み、迅速に返信します。</p>
+    <p>メール：<a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a></p>
+    <p>サポート：<a href="https://kvndh.github.io/support/tapey.html">kvndh.github.io/support/tapey.html</a></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>8. ポリシーの変更</h2>
+    <p>このポリシーに重要な変更を加える場合は、このページを更新し、上部の発効日を改訂します。定期的にこのページをご確認いただくことをお勧めします。</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey.html">サポート</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ ZH (Simplified) -->
+<section class="lang-section" data-lang="zh">
+  <p class="effective-date">生效日期：2026年6月10日</p>
+
+  <p class="app-desc">Tapey 建立于一个原则之上：你的照片留在你的设备上。本政策说明哪些数据由谁收集以及如何使用。</p>
+
+  <div class="policy-block">
+    <h2>1. 简介</h2>
+    <p>Tapey（"我们"、"本应用"）是一款 iPhone 应用，可将你的照片排列成画廊墙壁纸。我们不运营服务器，不存储你的照片，也不知道你是谁。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>2. 我们收集的数据</h2>
+
+    <h3>2a. 我们自己收集的数据</h3>
+    <div class="highlight-card">
+      <p><strong>无。</strong>你添加的照片、创建的壁纸和应用设置仅存储在你的设备上（设备存储 / IndexedDB），不会传输到任何服务器，我们无法查看，卸载应用后自动删除。</p>
+    </div>
+    <p>我们没有用户账户，不需要注册，也不使用自己的分析 SDK。</p>
+
+    <h3>2b. Google AdMob（第三方）收集的数据</h3>
+    <p>Tapey 免费提供，通过广告维持运营。保存壁纸时，可能会显示由 <strong>Google AdMob</strong> 提供的短暂全屏广告。AdMob 可能收集：</p>
+    <ul>
+      <li>设备标识符（IDFA — 广告标识符）</li>
+      <li>应用互动数据（如广告展示次数、点击）</li>
+      <li>崩溃和诊断数据</li>
+    </ul>
+    <p>这些数据由 Google 而非我们收集和处理。Google 的隐私政策适用：<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+    <p>仅在你通过应用追踪透明度（ATT）弹窗<strong>授予权限时</strong>，IDFA 才会用于个性化广告。如果拒绝，只会显示非个性化广告，IDFA 不会用于定向。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>3. 数据的使用方式</h2>
+    <p>我们不收集任何数据，因此也不使用。</p>
+    <p>Google AdMob 使用其收集的数据来投放和衡量广告、提升广告质量以及防止欺诈。我们只收到匿名化的汇总收入报告，不含任何可识别个人身份的信息。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>4. 应用追踪透明度（ATT）</h2>
+    <p>首次启动时，iOS 将显示系统弹窗，询问是否允许 Tapey 追踪你在其他应用和网站上的活动。该权限决定 AdMob 是否可以使用你的 IDFA 进行个性化广告。</p>
+    <ul>
+      <li><strong>允许时：</strong>AdMob 可使用 IDFA 向你展示更相关的广告。</li>
+      <li><strong>拒绝时：</strong>只显示非个性化广告。AdMob 仍可能收集崩溃报告等非识别数据。</li>
+    </ul>
+    <p>可随时在<strong>设置 &rsaquo; 隐私与安全 &rsaquo; 追踪</strong>中更改此选择。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>5. 数据保留与删除</h2>
+    <p>Tapey 存储的所有数据（照片、设置、壁纸记录）仅存在于你的设备上，卸载应用后自动删除。</p>
+    <p>Google AdMob 收集的数据按 Google 的政策保留。详情请参阅 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隐私政策</a>。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>6. 儿童隐私</h2>
+    <p>Tapey 在 App Store 的年龄分级为 4+。我们不会故意收集 13 岁以下儿童的个人信息。由于我们自己不收集任何数据，我们这一方不存在针对儿童的特殊风险。AdMob 的儿童定向设置依据 Google 的政策执行。</p>
+  </div>
+
+  <div class="contact">
+    <h2>7. 联系我们</h2>
+    <p>对本隐私政策有疑问？欢迎联系我们，我们阅读每一封来信。</p>
+    <p>邮箱：<a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a></p>
+    <p>支持：<a href="https://kvndh.github.io/support/tapey.html">kvndh.github.io/support/tapey.html</a></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>8. 政策变更</h2>
+    <p>如果我们对本政策进行重大变更，将更新此页面并修改顶部的生效日期。建议你定期查阅此页面。</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey.html">支持</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ ZT (Traditional) -->
+<section class="lang-section" data-lang="zt">
+  <p class="effective-date">生效日期：2026年6月10日</p>
+
+  <p class="app-desc">Tapey 建立於一個原則之上：你的照片留在你的裝置上。本政策說明哪些資料由誰收集以及如何使用。</p>
+
+  <div class="policy-block">
+    <h2>1. 簡介</h2>
+    <p>Tapey（「我們」、「本應用程式」）是一款 iPhone App，可將你的照片排列成藝廊牆桌布。我們不運營伺服器，不儲存你的照片，也不知道你是誰。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>2. 我們收集的資料</h2>
+
+    <h3>2a. 我們自己收集的資料</h3>
+    <div class="highlight-card">
+      <p><strong>無。</strong>你新增的照片、建立的桌布和應用程式設定僅儲存在你的裝置上（裝置儲存空間 / IndexedDB），不會傳輸至任何伺服器，我們無法查看，解除安裝 App 後自動刪除。</p>
+    </div>
+    <p>我們沒有使用者帳號，不需要註冊，也不使用自己的分析 SDK。</p>
+
+    <h3>2b. Google AdMob（第三方）收集的資料</h3>
+    <p>Tapey 免費提供，透過廣告維持營運。儲存桌布時，可能顯示由 <strong>Google AdMob</strong> 提供的短暫全螢幕廣告。AdMob 可能收集：</p>
+    <ul>
+      <li>裝置識別碼（IDFA — 廣告識別碼）</li>
+      <li>應用程式互動資料（例如廣告曝光次數、點擊）</li>
+      <li>當機和診斷資料</li>
+    </ul>
+    <p>這些資料由 Google 而非我們收集和處理。Google 的隱私權政策適用：<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+    <p>只有在你透過應用程式追蹤透明度（ATT）彈出視窗<strong>授予權限時</strong>，IDFA 才會用於個人化廣告。若拒絕，只顯示非個人化廣告，IDFA 不會用於定向。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>3. 資料的使用方式</h2>
+    <p>我們不收集任何資料，因此也不使用。</p>
+    <p>Google AdMob 使用其收集的資料來投放和衡量廣告、提升廣告品質及防止詐欺。我們只收到匿名化的匯總收益報告，不含任何可識別個人身分的資訊。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>4. 應用程式追蹤透明度（ATT）</h2>
+    <p>首次啟動時，iOS 將顯示系統彈出視窗，詢問是否允許 Tapey 追蹤你在其他 App 和網站上的活動。此權限決定 AdMob 是否可使用你的 IDFA 進行個人化廣告。</p>
+    <ul>
+      <li><strong>允許時：</strong>AdMob 可使用 IDFA 向你顯示更相關的廣告。</li>
+      <li><strong>拒絕時：</strong>只顯示非個人化廣告。AdMob 仍可能收集當機報告等非識別資料。</li>
+    </ul>
+    <p>可隨時在<strong>設定 &rsaquo; 隱私權與安全性 &rsaquo; 追蹤</strong>中變更此選擇。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>5. 資料保留與刪除</h2>
+    <p>Tapey 儲存的所有資料（照片、設定、桌布記錄）僅存在於你的裝置上，解除安裝 App 後自動刪除。</p>
+    <p>Google AdMob 收集的資料依 Google 的政策保留。詳情請參閱 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 隱私權政策</a>。</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>6. 兒童隱私</h2>
+    <p>Tapey 在 App Store 的年齡分級為 4+。我們不會刻意收集 13 歲以下兒童的個人資訊。由於我們自己不收集任何資料，我們這方不存在針對兒童的特殊風險。AdMob 的兒童定向設定依 Google 的政策執行。</p>
+  </div>
+
+  <div class="contact">
+    <h2>7. 聯絡我們</h2>
+    <p>對本隱私權政策有疑問？歡迎聯絡我們，我們閱讀每一封來信。</p>
+    <p>電子郵件：<a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a></p>
+    <p>支援：<a href="https://kvndh.github.io/support/tapey.html">kvndh.github.io/support/tapey.html</a></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>8. 政策變更</h2>
+    <p>若我們對本政策進行重大變更，將更新此頁面並修改頂部的生效日期。建議你定期查閱此頁面。</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey.html">支援</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ TH -->
+<section class="lang-section" data-lang="th">
+  <p class="effective-date">วันที่มีผลบังคับใช้: 10 มิถุนายน 2026</p>
+
+  <p class="app-desc">Tapey สร้างขึ้นบนหลักการเดียว: รูปภาพของคุณอยู่บนอุปกรณ์ของคุณ นโยบายนี้อธิบายว่าข้อมูลใดถูกเก็บรวบรวมโดยใคร และนำไปใช้อย่างไร</p>
+
+  <div class="policy-block">
+    <h2>1. บทนำ</h2>
+    <p>Tapey ("เรา", "แอป") คือแอป iPhone ที่ช่วยจัดเรียงรูปภาพของคุณเป็นวอลเปเปอร์สไตล์แกลเลอรีวอล เราไม่มีเซิร์ฟเวอร์ ไม่เก็บรูปภาพของคุณ และไม่รู้ว่าคุณเป็นใคร</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>2. ข้อมูลที่เราเก็บรวบรวม</h2>
+
+    <h3>2a. ข้อมูลที่เราเองเก็บรวบรวม</h3>
+    <div class="highlight-card">
+      <p><strong>ไม่มี</strong> รูปภาพที่คุณเพิ่ม วอลเปเปอร์ที่คุณสร้าง และการตั้งค่าแอปจะถูกบันทึกไว้บนอุปกรณ์ของคุณเท่านั้น (ที่จัดเก็บอุปกรณ์ / IndexedDB) ไม่มีการส่งไปยังเซิร์ฟเวอร์ใดๆ เราไม่สามารถเข้าถึงได้ และจะถูกลบโดยอัตโนมัติเมื่อคุณถอนการติดตั้งแอป</p>
+    </div>
+    <p>เราไม่มีบัญชีผู้ใช้ ไม่ต้องลงทะเบียน และไม่ใช้ SDK วิเคราะห์ของตัวเอง</p>
+
+    <h3>2b. ข้อมูลที่ Google AdMob (บุคคลที่สาม) เก็บรวบรวม</h3>
+    <p>Tapey เป็นแอปฟรีที่ได้รับการสนับสนุนจากโฆษณา เมื่อบันทึกวอลเปเปอร์ อาจมีโฆษณาเต็มหน้าจอสั้นๆ จาก <strong>Google AdMob</strong> AdMob อาจเก็บรวบรวม:</p>
+    <ul>
+      <li>ตัวระบุอุปกรณ์ (IDFA — ตัวระบุสำหรับผู้โฆษณา)</li>
+      <li>ข้อมูลการโต้ตอบกับแอป (เช่น การแสดงโฆษณา การแตะ)</li>
+      <li>ข้อมูลการขัดข้องและการวินิจฉัย</li>
+    </ul>
+    <p>ข้อมูลเหล่านี้ถูกเก็บรวบรวมและประมวลผลโดย Google ไม่ใช่เรา นโยบายความเป็นส่วนตัวของ Google ใช้บังคับ: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+    <p>IDFA จะถูกใช้สำหรับโฆษณาส่วนบุคคล<strong>เฉพาะเมื่อคุณให้สิทธิ์</strong>ผ่านการแจ้งเตือน App Tracking Transparency (ATT) หากปฏิเสธ จะแสดงเฉพาะโฆษณาที่ไม่ใช่ส่วนบุคคล และไม่ใช้ IDFA สำหรับการกำหนดเป้าหมาย</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>3. วิธีใช้ข้อมูล</h2>
+    <p>เราไม่ใช้ข้อมูลใดๆ เพราะเราไม่ได้เก็บรวบรวม</p>
+    <p>Google AdMob ใช้ข้อมูลที่เก็บรวบรวมเพื่อแสดงและวัดผลโฆษณา ปรับปรุงคุณภาพโฆษณา และป้องกันการฉ้อโกง เราได้รับเพียงรายงานรายได้รวมที่ไม่ระบุตัวตน ไม่มีข้อมูลที่สามารถระบุตัวบุคคลได้</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>4. ความโปร่งใสในการติดตามแอป (ATT)</h2>
+    <p>เมื่อเปิดครั้งแรก iOS จะแสดงการแจ้งเตือนจากระบบถามว่า Tapey สามารถติดตามกิจกรรมของคุณในแอปและเว็บไซต์อื่นๆ ได้หรือไม่ สิทธิ์นี้กำหนดว่า AdMob สามารถใช้ IDFA ของคุณสำหรับโฆษณาส่วนบุคคลได้หรือไม่</p>
+    <ul>
+      <li><strong>หากอนุญาต:</strong> AdMob อาจใช้ IDFA ของคุณเพื่อแสดงโฆษณาที่เกี่ยวข้องกับคุณมากขึ้น</li>
+      <li><strong>หากปฏิเสธ:</strong> จะแสดงเฉพาะโฆษณาที่ไม่ใช่ส่วนบุคคล AdMob ยังอาจเก็บข้อมูลที่ไม่ระบุตัวตน เช่น รายงานการขัดข้อง</li>
+    </ul>
+    <p>คุณสามารถเปลี่ยนแปลงตัวเลือกนี้ได้ตลอดเวลาใน <strong>การตั้งค่า &rsaquo; ความเป็นส่วนตัวและความปลอดภัย &rsaquo; การติดตาม</strong></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>5. การเก็บรักษาและการลบข้อมูล</h2>
+    <p>ข้อมูลทั้งหมดที่ Tapey บันทึก (รูปภาพ การตั้งค่า ประวัติวอลเปเปอร์) มีอยู่บนอุปกรณ์ของคุณเท่านั้น และจะถูกลบโดยอัตโนมัติเมื่อถอนการติดตั้งแอป</p>
+    <p>ข้อมูลที่ Google AdMob เก็บรวบรวมจะถูกเก็บรักษาตามนโยบายของ Google เอง โปรดดูรายละเอียดใน <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">นโยบายความเป็นส่วนตัวของ Google</a></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>6. ความเป็นส่วนตัวของเด็ก</h2>
+    <p>Tapey มีการจัดระดับอายุ 4+ บน App Store เราไม่ได้เก็บรวบรวมข้อมูลส่วนบุคคลจากเด็กอายุต่ำกว่า 13 ปีโดยตั้งใจ เนื่องจากเราไม่ได้เก็บข้อมูลใดๆ ด้วยตนเอง จึงไม่มีความเสี่ยงพิเศษต่อเด็กจากฝ่ายเรา การตั้งค่าสำหรับเด็กของ AdMob เป็นไปตามนโยบายของ Google</p>
+  </div>
+
+  <div class="contact">
+    <h2>7. ติดต่อเรา</h2>
+    <p>มีคำถามเกี่ยวกับนโยบายความเป็นส่วนตัวนี้? เรายินดีรับฟัง เราอ่านทุกข้อความ</p>
+    <p>อีเมล: <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a></p>
+    <p>ฝ่ายสนับสนุน: <a href="https://kvndh.github.io/support/tapey.html">kvndh.github.io/support/tapey.html</a></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>8. การเปลี่ยนแปลงนโยบายนี้</h2>
+    <p>หากเราเปลี่ยนแปลงนโยบายนี้อย่างมีนัยสำคัญ เราจะอัปเดตหน้านี้และแก้ไขวันที่มีผลบังคับใช้ที่ด้านบน ขอแนะนำให้คุณตรวจสอบหน้านี้เป็นระยะ</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey.html">ฝ่ายสนับสนุน</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ ID -->
+<section class="lang-section" data-lang="id">
+  <p class="effective-date">Tanggal berlaku: 10 Juni 2026</p>
+
+  <p class="app-desc">Tapey dibangun atas satu prinsip: foto-fotomu tetap di perangkatmu. Kebijakan ini menjelaskan data apa yang dikumpulkan, oleh siapa, dan bagaimana penggunaannya.</p>
+
+  <div class="policy-block">
+    <h2>1. Pendahuluan</h2>
+    <p>Tapey ("kami", "aplikasi") adalah aplikasi iPhone yang memungkinkan kamu menata foto menjadi wallpaper gallery wall. Privasi kamu penting bagi kami. Kami tidak menjalankan server, tidak menyimpan fotomu, dan tidak mengetahui siapa kamu.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>2. Data yang Kami Kumpulkan</h2>
+
+    <h3>2a. Data yang kami kumpulkan sendiri</h3>
+    <div class="highlight-card">
+      <p><strong>Tidak ada.</strong> Foto yang kamu tambahkan, wallpaper yang kamu buat, dan pengaturan aplikasi hanya disimpan di perangkatmu (penyimpanan perangkat / IndexedDB). Tidak pernah dikirimkan ke server manapun, tidak dapat kami lihat, dan dihapus otomatis saat kamu menghapus aplikasi.</p>
+    </div>
+    <p>Kami tidak memiliki akun pengguna, tidak perlu registrasi, dan tidak menggunakan SDK analitik milik sendiri.</p>
+
+    <h3>2b. Data yang dikumpulkan Google AdMob (pihak ketiga)</h3>
+    <p>Tapey gratis dan didukung oleh iklan. Saat menyimpan wallpaper, iklan layar penuh singkat dari <strong>Google AdMob</strong> mungkin muncul. AdMob dapat mengumpulkan:</p>
+    <ul>
+      <li>Pengenal perangkat (IDFA — Identifier for Advertisers)</li>
+      <li>Data interaksi aplikasi (mis. tayangan iklan, ketukan)</li>
+      <li>Data crash dan diagnostik</li>
+    </ul>
+    <p>Data ini dikumpulkan dan diproses oleh Google, bukan kami. Kebijakan privasi Google berlaku: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+    <p>IDFA hanya digunakan untuk iklan yang dipersonalisasi <strong>jika kamu memberikan izin</strong> melalui permintaan App Tracking Transparency (ATT). Jika ditolak, hanya iklan non-personal yang ditampilkan dan IDFA tidak digunakan untuk penargetan.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>3. Cara Penggunaan Data</h2>
+    <p>Kami tidak menggunakan data apapun karena kami tidak mengumpulkannya.</p>
+    <p>Google AdMob menggunakan data yang dikumpulkannya untuk menyajikan dan mengukur iklan, meningkatkan kualitas iklan, dan pencegahan penipuan. Kami hanya menerima laporan pendapatan agregat yang dianonimkan — tidak ada informasi yang dapat mengidentifikasi pribadi.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>4. App Tracking Transparency (ATT)</h2>
+    <p>Saat pertama kali diluncurkan, iOS akan menampilkan permintaan sistem yang menanyakan apakah Tapey boleh melacak aktivitasmu di aplikasi dan situs web lain. Izin ini mengontrol apakah IDFA-mu dapat digunakan oleh AdMob untuk iklan yang dipersonalisasi.</p>
+    <ul>
+      <li><strong>Jika mengizinkan:</strong> AdMob dapat menggunakan IDFA-mu untuk menampilkan iklan yang lebih relevan bagimu.</li>
+      <li><strong>Jika menolak:</strong> Hanya iklan non-personal yang ditampilkan. AdMob mungkin masih mengumpulkan data non-identifikasi seperti laporan crash.</li>
+    </ul>
+    <p>Kamu dapat mengubah pilihan ini kapan saja di <strong>Pengaturan &rsaquo; Privasi &amp; Keamanan &rsaquo; Pelacakan</strong>.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>5. Penyimpanan &amp; Penghapusan Data</h2>
+    <p>Semua data yang disimpan Tapey (foto, pengaturan, dan riwayat wallpaper) hanya ada di perangkatmu dan dihapus otomatis saat kamu menghapus aplikasi.</p>
+    <p>Data yang dikumpulkan Google AdMob disimpan sesuai kebijakan Google sendiri. Silakan merujuk ke <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Kebijakan Privasi Google</a> untuk detail penyimpanan dan penghapusan.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>6. Privasi Anak-anak</h2>
+    <p>Tapey berperingkat 4+ di App Store. Kami tidak secara sengaja mengumpulkan informasi pribadi dari anak-anak di bawah 13 tahun. Karena kami tidak mengumpulkan data sendiri, tidak ada risiko khusus terhadap anak-anak dari pihak kami. Pengaturan ramah anak AdMob dipatuhi sesuai kebijakan Google.</p>
+  </div>
+
+  <div class="contact">
+    <h2>7. Hubungi Kami</h2>
+    <p>Ada pertanyaan tentang kebijakan privasi ini? Silakan hubungi kami — kami membaca setiap pesan.</p>
+    <p>Email: <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a></p>
+    <p>Dukungan: <a href="https://kvndh.github.io/support/tapey.html">kvndh.github.io/support/tapey.html</a></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>8. Perubahan pada Kebijakan Ini</h2>
+    <p>Jika kami melakukan perubahan material pada kebijakan ini, kami akan memperbarui halaman ini dan merevisi tanggal berlaku di bagian atas. Kami mendorongmu untuk meninjau halaman ini secara berkala.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey.html">Dukungan</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ ES -->
+<section class="lang-section" data-lang="es">
+  <p class="effective-date">Fecha de entrada en vigor: 10 de junio de 2026</p>
+
+  <p class="app-desc">Tapey se construye sobre un principio: tus fotos se quedan en tu dispositivo. Esta política explica qué datos se recopilan, por quién y cómo se utilizan.</p>
+
+  <div class="policy-block">
+    <h2>1. Introducción</h2>
+    <p>Tapey ("nosotros", "la app") es una aplicación para iPhone que te permite organizar tus fotos en un fondo de pantalla estilo galería. Tu privacidad nos importa. No operamos servidores, no almacenamos tus fotos y no sabemos quién eres.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>2. Datos que recopilamos</h2>
+
+    <h3>2a. Datos recopilados por nosotros</h3>
+    <div class="highlight-card">
+      <p><strong>Ninguno.</strong> Las fotos que añades, los fondos que creas y la configuración de la app se almacenan únicamente en tu dispositivo (almacenamiento del dispositivo / IndexedDB). Nunca se transmiten a ningún servidor, no podemos acceder a ellos y se eliminan automáticamente cuando desinstales la app.</p>
+    </div>
+    <p>No tenemos cuentas de usuario, no requerimos registro y no usamos ningún SDK de análisis propio.</p>
+
+    <h3>2b. Datos recopilados por Google AdMob (tercero)</h3>
+    <p>Tapey es gratuito y está financiado por publicidad. Al guardar un fondo de pantalla, puede aparecer un breve anuncio a pantalla completa servido por <strong>Google AdMob</strong>. AdMob puede recopilar:</p>
+    <ul>
+      <li>Identificador de dispositivo (IDFA — Identifier for Advertisers)</li>
+      <li>Datos de interacción con la app (p. ej. impresiones de anuncios, toques)</li>
+      <li>Datos de fallos y diagnóstico</li>
+    </ul>
+    <p>Estos datos son recopilados y procesados por Google, no por nosotros. Se aplica la política de privacidad de Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+    <p>El IDFA solo se usa para anuncios personalizados <strong>si otorgas permiso</strong> a través del aviso de App Tracking Transparency (ATT). Si lo rechazas, solo se muestran anuncios no personalizados y el IDFA no se usa para segmentación.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>3. Cómo se usan los datos</h2>
+    <p>Nosotros no utilizamos ningún dato porque no recopilamos ninguno.</p>
+    <p>Google AdMob usa los datos que recopila para servir y medir anuncios, mejorar la calidad publicitaria y prevenir el fraude. Nosotros solo recibimos informes de ingresos agregados y anonimizados, sin información de identificación personal.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>4. App Tracking Transparency (ATT)</h2>
+    <p>Al primer inicio, iOS mostrará un aviso del sistema preguntando si Tapey puede rastrear tu actividad en otras apps y sitios web. Este permiso controla si AdMob puede usar tu IDFA para publicidad personalizada.</p>
+    <ul>
+      <li><strong>Si permites:</strong> AdMob puede usar tu IDFA para mostrarte anuncios más relevantes.</li>
+      <li><strong>Si rechazas:</strong> Solo se muestran anuncios no personalizados. AdMob puede seguir recopilando datos no identificativos como informes de fallos.</li>
+    </ul>
+    <p>Puedes cambiar esta elección en cualquier momento en <strong>Ajustes &rsaquo; Privacidad y seguridad &rsaquo; Seguimiento</strong>.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>5. Retención y eliminación de datos</h2>
+    <p>Todos los datos almacenados por Tapey (fotos, ajustes e historial de fondos) existen únicamente en tu dispositivo y se eliminan automáticamente al desinstalar la app.</p>
+    <p>Los datos recopilados por Google AdMob se conservan según las políticas propias de Google. Consulta la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de privacidad de Google</a> para obtener detalles.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>6. Privacidad infantil</h2>
+    <p>Tapey tiene clasificación 4+ en el App Store. No recopilamos intencionadamente información personal de menores de 13 años. Como no recopilamos ningún dato por nuestra parte, no existe un riesgo especial para los niños de nuestra parte. La configuración de AdMob para contenido dirigido a niños se cumple según las políticas de Google.</p>
+  </div>
+
+  <div class="contact">
+    <h2>7. Contáctanos</h2>
+    <p>¿Tienes preguntas sobre esta política de privacidad? Escríbenos — leemos todos los mensajes.</p>
+    <p>Correo electrónico: <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a></p>
+    <p>Soporte: <a href="https://kvndh.github.io/support/tapey.html">kvndh.github.io/support/tapey.html</a></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>8. Cambios en esta política</h2>
+    <p>Si realizamos cambios importantes en esta política, actualizaremos esta página y revisaremos la fecha de entrada en vigor en la parte superior. Te recomendamos revisar esta página periódicamente.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey.html">Soporte</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ PT -->
+<section class="lang-section" data-lang="pt">
+  <p class="effective-date">Data de entrada em vigor: 10 de junho de 2026</p>
+
+  <p class="app-desc">O Tapey é construído sobre um princípio: as suas fotos ficam no seu dispositivo. Esta política explica que dados são recolhidos, por quem e como são utilizados.</p>
+
+  <div class="policy-block">
+    <h2>1. Introdução</h2>
+    <p>O Tapey ("nós", "a app") é uma aplicação para iPhone que lhe permite organizar as suas fotos num papel de parede estilo galeria. A sua privacidade é importante para nós. Não operamos servidores, não armazenamos as suas fotos e não sabemos quem você é.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>2. Dados que recolhemos</h2>
+
+    <h3>2a. Dados recolhidos por nós</h3>
+    <div class="highlight-card">
+      <p><strong>Nenhum.</strong> As fotos que adiciona, os papéis de parede que cria e as definições da app são armazenados apenas no seu dispositivo (armazenamento do dispositivo / IndexedDB). Nunca são transmitidos para nenhum servidor, não podemos aceder a eles e são eliminados automaticamente quando desinstala a app.</p>
+    </div>
+    <p>Não temos contas de utilizador, não requeremos registo e não utilizamos nenhum SDK de análise próprio.</p>
+
+    <h3>2b. Dados recolhidos pelo Google AdMob (terceiro)</h3>
+    <p>O Tapey é gratuito e suportado por publicidade. Ao guardar um papel de parede, pode aparecer um breve anúncio em ecrã inteiro fornecido pelo <strong>Google AdMob</strong>. O AdMob pode recolher:</p>
+    <ul>
+      <li>Identificador do dispositivo (IDFA — Identifier for Advertisers)</li>
+      <li>Dados de interação com a app (ex: impressões de anúncios, toques)</li>
+      <li>Dados de falhas e diagnóstico</li>
+    </ul>
+    <p>Estes dados são recolhidos e processados pelo Google, não por nós. A política de privacidade do Google aplica-se: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
+    <p>O IDFA só é utilizado para anúncios personalizados <strong>se conceder permissão</strong> através do aviso de App Tracking Transparency (ATT). Se recusar, apenas são mostrados anúncios não personalizados e o IDFA não é utilizado para segmentação.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>3. Como os dados são utilizados</h2>
+    <p>Nós não utilizamos quaisquer dados porque não recolhemos nenhuns.</p>
+    <p>O Google AdMob utiliza os dados que recolhe para servir e medir anúncios, melhorar a qualidade publicitária e prevenir fraudes. Nós recebemos apenas relatórios de receita agregados e anonimizados — sem informações de identificação pessoal.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>4. App Tracking Transparency (ATT)</h2>
+    <p>No primeiro lançamento, o iOS apresentará um aviso do sistema a perguntar se o Tapey pode rastrear a sua atividade noutras apps e sites. Esta permissão controla se o AdMob pode usar o seu IDFA para publicidade personalizada.</p>
+    <ul>
+      <li><strong>Se permitir:</strong> O AdMob pode usar o seu IDFA para lhe mostrar anúncios mais relevantes.</li>
+      <li><strong>Se recusar:</strong> Apenas são mostrados anúncios não personalizados. O AdMob pode ainda recolher dados não identificativos como relatórios de falhas.</li>
+    </ul>
+    <p>Pode alterar esta escolha a qualquer momento em <strong>Definições &rsaquo; Privacidade e Segurança &rsaquo; Rastreamento</strong>.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>5. Retenção e eliminação de dados</h2>
+    <p>Todos os dados armazenados pelo Tapey (fotos, definições e histórico de papéis de parede) existem apenas no seu dispositivo e são eliminados automaticamente quando desinstala a app.</p>
+    <p>Os dados recolhidos pelo Google AdMob são retidos de acordo com as próprias políticas do Google. Consulte a <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidade do Google</a> para detalhes.</p>
+  </div>
+
+  <div class="policy-block">
+    <h2>6. Privacidade das crianças</h2>
+    <p>O Tapey tem classificação 4+ na App Store. Não recolhemos intencionalmente informações pessoais de crianças com menos de 13 anos. Como não recolhemos quaisquer dados da nossa parte, não existe um risco especial para as crianças da nossa parte. As definições do AdMob para conteúdo dirigido a crianças são respeitadas de acordo com as políticas do Google.</p>
+  </div>
+
+  <div class="contact">
+    <h2>7. Contacte-nos</h2>
+    <p>Tem perguntas sobre esta política de privacidade? Entre em contacto — lemos todas as mensagens.</p>
+    <p>E-mail: <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a></p>
+    <p>Suporte: <a href="https://kvndh.github.io/support/tapey.html">kvndh.github.io/support/tapey.html</a></p>
+  </div>
+
+  <div class="policy-block">
+    <h2>8. Alterações a esta política</h2>
+    <p>Se realizarmos alterações materiais a esta política, atualizaremos esta página e revisaremos a data de entrada em vigor no topo. Encorajamo-lo a rever esta página periodicamente.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey.html">Suporte</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.lang-btn');
+    var sections = document.querySelectorAll('.lang-section');
+
+    function switchLang(lang) {
+      buttons.forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+        btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+      });
+      sections.forEach(function (sec) {
+        sec.classList.toggle('visible', sec.dataset.lang === lang);
+      });
+      document.documentElement.lang = lang === 'zt' ? 'zh-Hant' : lang === 'zh' ? 'zh-Hans' : lang;
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        switchLang(btn.dataset.lang);
+      });
+    });
+
+    // Auto-detect browser language on load
+    var nav = (navigator.language || 'en').toLowerCase();
+    var detected = 'en';
+    if (nav.startsWith('ko')) detected = 'ko';
+    else if (nav.startsWith('ja')) detected = 'ja';
+    else if (nav === 'zh-tw' || nav === 'zh-hk' || nav === 'zh-hant') detected = 'zt';
+    else if (nav.startsWith('zh')) detected = 'zh';
+    else if (nav.startsWith('th')) detected = 'th';
+    else if (nav.startsWith('id')) detected = 'id';
+    else if (nav.startsWith('es')) detected = 'es';
+    else if (nav.startsWith('pt')) detected = 'pt';
+
+    if (detected !== 'en') switchLang(detected);
+  })();
+</script>
 </body>
 </html>

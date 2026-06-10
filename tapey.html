@@ -1,165 +1,791 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tapey — Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f7f3ee;
+      --plaster: #ede8e1;
+      --border: #d8d0c6;
+      --ink: #2e2820;
+      --ink-soft: #5c5347;
+      --ink-faint: #9a9088;
+      --accent: #8b7355;
+      --accent-light: #c4aa88;
+      --tape: #d4b896;
+    }
+
+    html { background: var(--cream); color: var(--ink); }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f5f5f7;
-      color: #1d1d1f;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
     }
 
+    /* ── TAPE STRIP ── */
+    .tape-strip {
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--tape) 0, var(--tape) 48px,
+        transparent 48px, transparent 56px
+      );
+      opacity: 0.7;
+      margin-bottom: 0;
+    }
+
+    /* ── HEADER ── */
     header {
-      background: #fff;
-      border-bottom: 1px solid #e5e5ea;
-      padding: 20px 24px;
+      padding: 36px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
     }
 
-    header a {
-      font-size: 13px;
-      color: #0071e3;
-      text-decoration: none;
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    header a:hover { text-decoration: underline; }
-
-    header h1 {
-      font-size: 18px;
+    .wordmark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 2.5rem;
       font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .wordmark span {
+      color: var(--accent);
+    }
+
+    .tagline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
       margin-top: 6px;
     }
 
-    header p {
-      font-size: 13px;
-      color: #86868b;
-      margin-top: 2px;
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: flex-start;
+      justify-content: flex-end;
+      max-width: 260px;
     }
 
-    main {
-      max-width: 640px;
-      margin: 48px auto;
-      padding: 0 24px;
-      flex: 1;
+    .lang-btn {
+      font-size: 0.72rem;
+      font-family: inherit;
+      padding: 4px 8px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      white-space: nowrap;
     }
 
-    .app-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 28px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    .lang-btn:hover {
+      background: var(--plaster);
+      border-color: var(--accent-light);
+      color: var(--ink);
     }
 
-    .section-title {
-      font-size: 11px;
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ── CONTENT SECTIONS ── */
+    .lang-section { display: none; }
+    .lang-section.visible { display: block; }
+
+    /* ── DESCRIPTION ── */
+    .app-desc {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* ── SECTION HEADINGS ── */
+    h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.35rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #86868b;
+      color: var(--ink);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    /* ── FAQ ── */
+    .faq { margin-bottom: 40px; }
+
+    details {
+      border-bottom: 1px solid var(--border);
+    }
+
+    details:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+
+    summary {
+      font-size: 0.975rem;
+      font-weight: 600;
+      color: var(--ink);
+      padding: 14px 4px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: '+';
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--accent-light);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      font-size: 0.93rem;
+      color: var(--ink-soft);
+      padding: 2px 4px 16px;
+      line-height: 1.7;
+    }
+
+    .faq-answer a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--plaster);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .contact h2 { border-bottom-color: var(--border); }
+
+    .contact p {
+      font-size: 0.93rem;
+      color: var(--ink-soft);
       margin-bottom: 10px;
     }
 
-    .faq-item { margin-bottom: 18px; }
-
-    .faq-item dt {
-      font-size: 15px;
+    .contact a {
+      color: var(--accent);
+      text-decoration: none;
       font-weight: 600;
-      margin-bottom: 4px;
     }
 
-    .faq-item dd {
-      font-size: 14px;
-      color: #3a3a3c;
-      line-height: 1.6;
-    }
+    .contact a:hover { text-decoration: underline; }
 
-    .contact-block {
-      margin-top: 24px;
+    /* ── FOOTER ── */
+    footer {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      text-align: center;
+      border-top: 1px solid var(--border);
       padding-top: 20px;
-      border-top: 1px solid #f0f0f0;
     }
 
-    .contact-block a {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 14px;
-      color: #0071e3;
+    footer a {
+      color: var(--accent);
       text-decoration: none;
     }
 
-    .contact-block a:hover { text-decoration: underline; }
+    footer a:hover { text-decoration: underline; }
 
-    footer {
-      text-align: center;
-      padding: 32px 24px;
-      font-size: 12px;
-      color: #aeaeb2;
+    @media (max-width: 480px) {
+      .wordmark { font-size: 2rem; }
+      .lang-switcher { max-width: 100%; justify-content: flex-start; }
+      .header-top { flex-direction: column; }
     }
-
-    footer a { color: #aeaeb2; }
   </style>
 </head>
 <body>
 
+<div class="tape-strip"></div>
+
 <header>
-  <a href="/support/">← kvndh apps</a>
-  <h1>Tapey</h1>
-  <p>Support &amp; FAQ · <a href="/support/tapey-privacy.html">개인정보처리방침</a></p>
+  <div class="header-top">
+    <div>
+      <div class="wordmark">Tape<span>y</span></div>
+      <div class="tagline" id="header-tagline">Support</div>
+    </div>
+    <nav class="lang-switcher" aria-label="Language">
+      <button class="lang-btn active" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="ko">한국어</button>
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="zh">简体中文</button>
+      <button class="lang-btn" data-lang="zt">繁體中文</button>
+      <button class="lang-btn" data-lang="th">ภาษาไทย</button>
+      <button class="lang-btn" data-lang="id">Indonesia</button>
+      <button class="lang-btn" data-lang="es">Español</button>
+      <button class="lang-btn" data-lang="pt">Português</button>
+    </nav>
+  </div>
 </header>
 
-<main>
+<!-- ═══════════════════════════════════════════════════════════ EN -->
+<section class="lang-section visible" data-lang="en">
+  <p class="app-desc">Tapey turns your photos into a washi-tape style gallery wall wallpaper — arranged automatically, edited intuitively, and saved straight to your iPhone's camera roll.</p>
 
-  <div class="app-card">
-    <p class="section-title">자주 묻는 질문</p>
-    <dl>
-      <div class="faq-item">
-        <dt>저장한 배경화면이 안 보여요.</dt>
-        <dd>사진 앱의 ‘최근 항목’ 또는 ‘Tapey’ 앨범을 확인해 주세요. 설정 → Tapey에서 사진 추가(저장) 권한이 켜져 있어야 저장됩니다.</dd>
-      </div>
-      <div class="faq-item">
-        <dt>배경화면이 흐릿하게 나와요.</dt>
-        <dd>‘화면 맞추기’ 단계에서 해상도를 ‘내 기기 맞춤’으로 선택하면 기기에 꼭 맞는 고해상도로 저장됩니다.</dd>
-      </div>
-      <div class="faq-item">
-        <dt>잠금화면 시계가 사진을 가려요.</dt>
-        <dd>‘화면 맞추기’에서 시계 공간과 위젯 위치를 정하면, 그 영역을 비워 사진이 가려지지 않게 배치됩니다.</dd>
-      </div>
-      <div class="faq-item">
-        <dt>광고가 떠요.</dt>
-        <dd>무료 앱이라 저장할 때 전면 광고가 한 번 표시될 수 있어요. 상시 배너 광고는 없습니다.</dd>
-      </div>
-      <div class="faq-item">
-        <dt>내 사진은 안전한가요?</dt>
-        <dd>네. 모든 편집은 기기 안에서만 이뤄지고, 사진은 어떤 서버에도 업로드하거나 보관하지 않습니다.</dd>
-      </div>
-      <div class="faq-item">
-        <dt>언어를 바꾸고 싶어요.</dt>
-        <dd>기기의 언어 설정을 따라갑니다(한국어·영어).</dd>
-      </div>
-      <div class="faq-item">
-        <dt>버그를 발견했어요 / 기능을 제안하고 싶어요.</dt>
-        <dd>아래 이메일로 알려주세요. 빠르게 확인하겠습니다.</dd>
-      </div>
-    </dl>
+  <div class="faq">
+    <h2>FAQ</h2>
 
-    <div class="contact-block">
-      <p class="section-title">문의</p>
-      <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a>
-    </div>
+    <details>
+      <summary>How do I add photos?</summary>
+      <div class="faq-answer">Tap the <strong>+</strong> button on the empty wall screen, then choose photos from your library or take a new one with your camera. You can add up to 12 photos per wallpaper.</div>
+    </details>
+
+    <details>
+      <summary>How do I save the wallpaper?</summary>
+      <div class="faq-answer">Tap <strong>Save</strong> (or the save icon in the toolbar). The wallpaper is exported at full resolution and saved directly to your iPhone's photo library. A short ad may appear before saving — see below for why.</div>
+    </details>
+
+    <details>
+      <summary>Why does an ad appear when I save?</summary>
+      <div class="faq-answer">Tapey is completely free. To keep it free, a short full-screen ad appears once per save. The ad never blocks your save — if it fails to load, your wallpaper is saved immediately anyway.</div>
+    </details>
+
+    <details>
+      <summary>Are my photos uploaded to a server?</summary>
+      <div class="faq-answer">No. All photo processing happens entirely on your device. Your photos are never uploaded, transmitted, or stored anywhere outside your iPhone.</div>
+    </details>
+
+    <details>
+      <summary>How do I set the wallpaper on my iPhone?</summary>
+      <div class="faq-answer">After saving, open <strong>Settings → Wallpaper → Add New Wallpaper</strong>, pick <strong>Photos</strong>, and select the image Tapey saved. Choose the lock screen or home screen slot and tap <strong>Set</strong>.</div>
+    </details>
+
+    <details>
+      <summary>The app isn't working or it crashed — what should I do?</summary>
+      <div class="faq-answer">Try force-quitting and relaunching the app. If the problem persists, make sure you are on the latest version from the App Store. If it still happens, please <a href="mailto:kvndh66@gmail.com">email us</a> with a description of what you were doing — we respond quickly.</div>
+    </details>
+
+    <details>
+      <summary>Can I use Tapey on iPad?</summary>
+      <div class="faq-answer">Tapey is designed for iPhone. It will run on iPad in iPhone compatibility mode, but the layout is optimised for phone screens.</div>
+    </details>
   </div>
 
-</main>
+  <div class="contact">
+    <h2>Contact</h2>
+    <p>Have a question, found a bug, or just want to say hello?</p>
+    <p>Email us at <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a> — we read every message.</p>
+  </div>
 
-<footer>
-  © 2026 kvndh · <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a>
-</footer>
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey-privacy.html">Privacy Policy</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
 
+<!-- ═══════════════════════════════════════════════════════════ KO -->
+<section class="lang-section" data-lang="ko">
+  <p class="app-desc">Tapey는 내 사진을 워시테이프 스타일의 갤러리월 배경화면으로 만들어줍니다. 자동 배치, 직관적인 편집, 카메라 롤에 바로 저장까지.</p>
+
+  <div class="faq">
+    <h2>자주 묻는 질문</h2>
+
+    <details>
+      <summary>사진은 어떻게 추가하나요?</summary>
+      <div class="faq-answer">빈 화면의 <strong>+</strong> 버튼을 눌러 보관함에서 사진을 선택하거나 카메라로 직접 촬영하세요. 배경화면 하나에 최대 12장까지 추가할 수 있습니다.</div>
+    </details>
+
+    <details>
+      <summary>배경화면은 어떻게 저장하나요?</summary>
+      <div class="faq-answer">툴바의 <strong>저장</strong> 버튼을 누르세요. 풀 해상도로 내보내져 iPhone 사진 보관함에 바로 저장됩니다. 저장 전 짧은 광고가 표시될 수 있습니다.</div>
+    </details>
+
+    <details>
+      <summary>저장할 때 광고가 왜 나오나요?</summary>
+      <div class="faq-answer">Tapey는 완전 무료 앱입니다. 무료를 유지하기 위해 저장 시 전면 광고가 한 번 표시됩니다. 광고가 로드되지 않으면 즉시 저장되니 저장 자체가 막히지는 않습니다.</div>
+    </details>
+
+    <details>
+      <summary>내 사진이 서버에 업로드되나요?</summary>
+      <div class="faq-answer">아닙니다. 모든 처리는 기기 내에서만 이루어집니다. 사진은 iPhone 밖으로 전송되거나 저장되지 않습니다.</div>
+    </details>
+
+    <details>
+      <summary>iPhone에 배경화면을 설정하는 방법은?</summary>
+      <div class="faq-answer">저장 후 <strong>설정 → 배경화면 → 새 배경화면 추가</strong>로 이동해 <strong>사진</strong>을 선택하고 Tapey가 저장한 이미지를 고르세요. 잠금화면 또는 홈 화면 슬롯을 선택 후 <strong>설정</strong>을 누르면 됩니다.</div>
+    </details>
+
+    <details>
+      <summary>앱이 작동하지 않거나 충돌이 발생해요.</summary>
+      <div class="faq-answer">앱을 강제 종료 후 다시 실행해 보세요. 문제가 지속되면 App Store에서 최신 버전으로 업데이트하세요. 그래도 해결되지 않으면 어떤 상황에서 발생했는지 설명해 <a href="mailto:kvndh66@gmail.com">이메일</a>로 보내주세요. 빠르게 답변드립니다.</div>
+    </details>
+
+    <details>
+      <summary>iPad에서도 쓸 수 있나요?</summary>
+      <div class="faq-answer">Tapey는 iPhone용으로 설계되었습니다. iPad에서는 iPhone 호환 모드로 실행되지만 레이아웃은 폰 화면에 최적화되어 있습니다.</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>문의</h2>
+    <p>질문이 있거나 버그를 발견하셨나요?</p>
+    <p><a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a>으로 이메일 주세요. 모든 메시지를 읽고 빠르게 답변드립니다.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey-privacy.html">개인정보처리방침</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ JA -->
+<section class="lang-section" data-lang="ja">
+  <p class="app-desc">Tapeyは、あなたの写真をマスキングテープ風のギャラリーウォール壁紙に自動でレイアウトし、iPhoneのカメラロールに直接保存します。</p>
+
+  <div class="faq">
+    <h2>よくある質問</h2>
+
+    <details>
+      <summary>写真を追加するには？</summary>
+      <div class="faq-answer">空のウォール画面の <strong>+</strong> ボタンをタップして、ライブラリから選ぶかカメラで新しく撮影します。1枚の壁紙に最大12枚追加できます。</div>
+    </details>
+
+    <details>
+      <summary>壁紙を保存するには？</summary>
+      <div class="faq-answer">ツールバーの <strong>保存</strong> ボタンをタップします。フル解像度でエクスポートされ、iPhoneのフォトライブラリに直接保存されます。保存前に短い広告が表示される場合があります。</div>
+    </details>
+
+    <details>
+      <summary>保存時に広告が表示されるのはなぜ？</summary>
+      <div class="faq-answer">Tapeyは完全無料のアプリです。無料を維持するため、保存時に1回だけ全画面広告が表示されます。広告の読み込みに失敗しても保存は即座に完了しますのでご安心ください。</div>
+    </details>
+
+    <details>
+      <summary>写真がサーバーにアップロードされることはありますか？</summary>
+      <div class="faq-answer">ありません。すべての処理はデバイス上で行われます。写真がiPhoneの外部に送信・保存されることは一切ありません。</div>
+    </details>
+
+    <details>
+      <summary>iPhoneに壁紙を設定する方法は？</summary>
+      <div class="faq-answer">保存後、<strong>設定 → 壁紙 → 新しい壁紙を追加</strong> に進み、<strong>写真</strong>を選んでTapeyが保存した画像を選択します。ロック画面またはホーム画面を選んで <strong>設定</strong> をタップしてください。</div>
+    </details>
+
+    <details>
+      <summary>アプリが動かない・クラッシュした場合は？</summary>
+      <div class="faq-answer">アプリを強制終了して再起動してください。問題が続く場合はApp Storeで最新バージョンに更新してください。それでも解決しない場合は、何をしていたかを添えて <a href="mailto:kvndh66@gmail.com">メール</a> でお知らせください。迅速に対応します。</div>
+    </details>
+
+    <details>
+      <summary>iPadでも使えますか？</summary>
+      <div class="faq-answer">TapeyはiPhone向けに設計されています。iPadではiPhone互換モードで動作しますが、レイアウトはスマートフォン画面に最適化されています。</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>お問い合わせ</h2>
+    <p>ご質問やバグ報告などは、お気軽にどうぞ。</p>
+    <p><a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a> までメールください。すべてのメッセージを読み、迅速に返信します。</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey-privacy.html">プライバシーポリシー</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ ZH (Simplified) -->
+<section class="lang-section" data-lang="zh">
+  <p class="app-desc">Tapey 将你的照片自动排列成和纸胶带风格的画廊墙壁纸，直观编辑后一键保存至 iPhone 相册。</p>
+
+  <div class="faq">
+    <h2>常见问题</h2>
+
+    <details>
+      <summary>如何添加照片？</summary>
+      <div class="faq-answer">在空白墙壁界面点击 <strong>+</strong> 按钮，从相册选择照片或直接拍摄新照片。每张壁纸最多可添加 12 张照片。</div>
+    </details>
+
+    <details>
+      <summary>如何保存壁纸？</summary>
+      <div class="faq-answer">点击工具栏中的 <strong>保存</strong> 按钮，壁纸将以全分辨率导出并直接保存到 iPhone 相册。保存前可能会显示一则短广告。</div>
+    </details>
+
+    <details>
+      <summary>保存时为什么会出现广告？</summary>
+      <div class="faq-answer">Tapey 完全免费。为维持免费，每次保存时会显示一次全屏广告。如果广告加载失败，壁纸会立即保存，不会影响保存操作。</div>
+    </details>
+
+    <details>
+      <summary>我的照片会上传到服务器吗？</summary>
+      <div class="faq-answer">不会。所有处理均在设备本地完成，照片不会被上传、传输或存储到 iPhone 以外的任何地方。</div>
+    </details>
+
+    <details>
+      <summary>如何在 iPhone 上设置壁纸？</summary>
+      <div class="faq-answer">保存后，打开 <strong>设置 → 壁纸 → 添加新壁纸</strong>，选择 <strong>照片</strong>，找到 Tapey 保存的图片，选择锁屏或主屏位置后点击 <strong>设定</strong>。</div>
+    </details>
+
+    <details>
+      <summary>应用无法运行或崩溃了怎么办？</summary>
+      <div class="faq-answer">请尝试强制退出并重新启动应用。若问题持续，请在 App Store 更新到最新版本。如仍有问题，请将操作描述发送到 <a href="mailto:kvndh66@gmail.com">邮箱</a>，我们会尽快回复。</div>
+    </details>
+
+    <details>
+      <summary>可以在 iPad 上使用吗？</summary>
+      <div class="faq-answer">Tapey 专为 iPhone 设计。在 iPad 上将以 iPhone 兼容模式运行，但界面布局针对手机屏幕优化。</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>联系我们</h2>
+    <p>有任何疑问或发现了 Bug？</p>
+    <p>发邮件至 <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a>，我们阅读每一封来信并尽快回复。</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey-privacy.html">隐私政策</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ ZT (Traditional) -->
+<section class="lang-section" data-lang="zt">
+  <p class="app-desc">Tapey 將你的照片自動排列成和紙膠帶風格的藝廊牆桌布，直覺編輯後一鍵儲存至 iPhone 相簿。</p>
+
+  <div class="faq">
+    <h2>常見問題</h2>
+
+    <details>
+      <summary>如何新增照片？</summary>
+      <div class="faq-answer">在空白牆面畫面點選 <strong>+</strong> 按鈕，從相簿選取照片或直接拍攝新照片。每張桌布最多可新增 12 張照片。</div>
+    </details>
+
+    <details>
+      <summary>如何儲存桌布？</summary>
+      <div class="faq-answer">點選工具列的 <strong>儲存</strong> 按鈕，桌布將以完整解析度匯出並直接儲存至 iPhone 照片圖庫。儲存前可能會顯示一則短廣告。</div>
+    </details>
+
+    <details>
+      <summary>儲存時為什麼會出現廣告？</summary>
+      <div class="faq-answer">Tapey 完全免費。為維持免費，每次儲存時會顯示一次全螢幕廣告。若廣告載入失敗，桌布仍會立即儲存，不影響儲存操作。</div>
+    </details>
+
+    <details>
+      <summary>我的照片會上傳到伺服器嗎？</summary>
+      <div class="faq-answer">不會。所有處理均在裝置本機完成，照片不會被上傳、傳輸或儲存至 iPhone 以外的任何地方。</div>
+    </details>
+
+    <details>
+      <summary>如何在 iPhone 上設定桌布？</summary>
+      <div class="faq-answer">儲存後，開啟 <strong>設定 → 桌布 → 新增桌布</strong>，選擇 <strong>照片</strong>，找到 Tapey 儲存的圖片，選擇鎖定畫面或主畫面位置後點選 <strong>設定</strong>。</div>
+    </details>
+
+    <details>
+      <summary>App 無法運作或當機了怎麼辦？</summary>
+      <div class="faq-answer">請嘗試強制關閉並重新啟動 App。若問題持續，請在 App Store 更新至最新版本。若仍有問題，請將操作描述寄至 <a href="mailto:kvndh66@gmail.com">信箱</a>，我們會盡快回覆。</div>
+    </details>
+
+    <details>
+      <summary>可以在 iPad 上使用嗎？</summary>
+      <div class="faq-answer">Tapey 專為 iPhone 設計。在 iPad 上將以 iPhone 相容模式執行，但介面佈局針對手機螢幕最佳化。</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>聯絡我們</h2>
+    <p>有任何疑問或發現了問題？</p>
+    <p>寄信至 <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a>，我們閱讀每一封來信並盡快回覆。</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey-privacy.html">隱私權政策</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ TH -->
+<section class="lang-section" data-lang="th">
+  <p class="app-desc">Tapey เปลี่ยนรูปภาพของคุณให้กลายเป็นวอลเปเปอร์สไตล์แกลเลอรีวอลด้วยเทปวาชิ จัดเรียงอัตโนมัติ แก้ไขง่าย และบันทึกลง iPhone โดยตรง</p>
+
+  <div class="faq">
+    <h2>คำถามที่พบบ่อย</h2>
+
+    <details>
+      <summary>วิธีเพิ่มรูปภาพ</summary>
+      <div class="faq-answer">แตะปุ่ม <strong>+</strong> ที่หน้าจอว่างเปล่า จากนั้นเลือกรูปจากคลังภาพหรือถ่ายใหม่จากกล้อง เพิ่มได้สูงสุด 12 รูปต่อวอลเปเปอร์หนึ่งชิ้น</div>
+    </details>
+
+    <details>
+      <summary>วิธีบันทึกวอลเปเปอร์</summary>
+      <div class="faq-answer">แตะปุ่ม <strong>บันทึก</strong> ในแถบเครื่องมือ ภาพจะถูกส่งออกในความละเอียดสูงสุดและบันทึกลงคลังภาพ iPhone โดยตรง อาจมีโฆษณาสั้นก่อนบันทึก</div>
+    </details>
+
+    <details>
+      <summary>ทำไมถึงมีโฆษณาเมื่อบันทึก</summary>
+      <div class="faq-answer">Tapey เป็นแอปฟรีทั้งหมด เพื่อรักษาความฟรี จึงมีโฆษณาเต็มหน้าจอหนึ่งครั้งต่อการบันทึก หากโฆษณาโหลดไม่สำเร็จ รูปจะถูกบันทึกทันทีโดยไม่มีปัญหา</div>
+    </details>
+
+    <details>
+      <summary>รูปภาพของฉันจะถูกอัปโหลดขึ้นเซิร์ฟเวอร์ไหม</summary>
+      <div class="faq-answer">ไม่เลย การประมวลผลทั้งหมดเกิดขึ้นบนอุปกรณ์ของคุณเท่านั้น รูปภาพจะไม่ถูกส่งหรือจัดเก็บนอก iPhone ของคุณ</div>
+    </details>
+
+    <details>
+      <summary>วิธีตั้งวอลเปเปอร์บน iPhone</summary>
+      <div class="faq-answer">หลังบันทึกแล้ว เปิด <strong>การตั้งค่า → วอลเปเปอร์ → เพิ่มวอลเปเปอร์ใหม่</strong> เลือก <strong>รูปภาพ</strong> และเลือกรูปที่ Tapey บันทึกไว้ จากนั้นเลือกหน้าจอล็อกหรือหน้าจอหลัก แล้วแตะ <strong>ตั้งค่า</strong></div>
+    </details>
+
+    <details>
+      <summary>แอปทำงานผิดปกติหรือหยุดทำงาน ต้องทำอย่างไร</summary>
+      <div class="faq-answer">ลองบังคับปิดแอปแล้วเปิดใหม่ หากยังมีปัญหา ให้อัปเดตเป็นเวอร์ชันล่าสุดจาก App Store หากยังไม่หาย กรุณา <a href="mailto:kvndh66@gmail.com">ส่งอีเมล</a> มาพร้อมรายละเอียดสิ่งที่เกิดขึ้น เราตอบกลับเร็ว</div>
+    </details>
+
+    <details>
+      <summary>ใช้กับ iPad ได้ไหม</summary>
+      <div class="faq-answer">Tapey ออกแบบมาสำหรับ iPhone โดยเฉพาะ บน iPad จะทำงานในโหมดความเข้ากันได้กับ iPhone แต่เลย์เอาต์ถูกปรับให้เหมาะกับหน้าจอโทรศัพท์</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>ติดต่อเรา</h2>
+    <p>มีคำถาม พบข้อผิดพลาด หรืออยากพูดคุย?</p>
+    <p>อีเมลหาเราได้ที่ <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a> เราอ่านทุกข้อความและตอบกลับโดยเร็ว</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey-privacy.html">นโยบายความเป็นส่วนตัว</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ ID -->
+<section class="lang-section" data-lang="id">
+  <p class="app-desc">Tapey mengubah foto-foto kamu menjadi wallpaper gallery wall gaya washi tape — disusun otomatis, diedit dengan intuitif, dan disimpan langsung ke kamera roll iPhone.</p>
+
+  <div class="faq">
+    <h2>Pertanyaan Umum</h2>
+
+    <details>
+      <summary>Bagaimana cara menambahkan foto?</summary>
+      <div class="faq-answer">Ketuk tombol <strong>+</strong> di layar dinding kosong, lalu pilih foto dari perpustakaan atau ambil foto baru dengan kamera. Kamu bisa menambahkan hingga 12 foto per wallpaper.</div>
+    </details>
+
+    <details>
+      <summary>Bagaimana cara menyimpan wallpaper?</summary>
+      <div class="faq-answer">Ketuk tombol <strong>Simpan</strong> di toolbar. Wallpaper akan diekspor dengan resolusi penuh dan disimpan langsung ke perpustakaan foto iPhone. Iklan singkat mungkin muncul sebelum penyimpanan.</div>
+    </details>
+
+    <details>
+      <summary>Kenapa muncul iklan saat menyimpan?</summary>
+      <div class="faq-answer">Tapey sepenuhnya gratis. Untuk tetap gratis, iklan layar penuh muncul sekali setiap kali menyimpan. Jika iklan gagal dimuat, wallpapermu tetap langsung tersimpan tanpa hambatan.</div>
+    </details>
+
+    <details>
+      <summary>Apakah foto saya diunggah ke server?</summary>
+      <div class="faq-answer">Tidak. Semua pemrosesan terjadi sepenuhnya di perangkatmu. Foto tidak pernah diunggah, dikirim, atau disimpan di mana pun di luar iPhone kamu.</div>
+    </details>
+
+    <details>
+      <summary>Cara mengatur wallpaper di iPhone?</summary>
+      <div class="faq-answer">Setelah menyimpan, buka <strong>Pengaturan → Wallpaper → Tambah Wallpaper Baru</strong>, pilih <strong>Foto</strong>, dan pilih gambar yang disimpan Tapey. Pilih slot layar kunci atau layar utama, lalu ketuk <strong>Atur</strong>.</div>
+    </details>
+
+    <details>
+      <summary>Aplikasi tidak berfungsi atau crash — apa yang harus dilakukan?</summary>
+      <div class="faq-answer">Coba paksa keluar dan buka ulang aplikasinya. Jika masalah berlanjut, pastikan kamu sudah menggunakan versi terbaru dari App Store. Jika masih terjadi, silakan <a href="mailto:kvndh66@gmail.com">kirim email</a> dengan deskripsi apa yang sedang kamu lakukan — kami merespons dengan cepat.</div>
+    </details>
+
+    <details>
+      <summary>Bisakah digunakan di iPad?</summary>
+      <div class="faq-answer">Tapey dirancang untuk iPhone. Di iPad, aplikasi akan berjalan dalam mode kompatibilitas iPhone, namun tata letak dioptimalkan untuk layar ponsel.</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>Hubungi Kami</h2>
+    <p>Ada pertanyaan, menemukan bug, atau sekadar ingin menyapa?</p>
+    <p>Email kami di <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a> — kami membaca setiap pesan.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey-privacy.html">Kebijakan Privasi</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ ES -->
+<section class="lang-section" data-lang="es">
+  <p class="app-desc">Tapey convierte tus fotos en un fondo de pantalla estilo galería con cinta washi — distribuidas automáticamente, editadas de forma intuitiva y guardadas directamente en el carrete de tu iPhone.</p>
+
+  <div class="faq">
+    <h2>Preguntas frecuentes</h2>
+
+    <details>
+      <summary>¿Cómo agrego fotos?</summary>
+      <div class="faq-answer">Pulsa el botón <strong>+</strong> en la pantalla vacía y elige fotos de tu biblioteca o toma una nueva con la cámara. Puedes añadir hasta 12 fotos por fondo de pantalla.</div>
+    </details>
+
+    <details>
+      <summary>¿Cómo guardo el fondo de pantalla?</summary>
+      <div class="faq-answer">Pulsa el botón <strong>Guardar</strong> en la barra de herramientas. El fondo se exporta en resolución máxima y se guarda directamente en la fototeca de tu iPhone. Puede aparecer un breve anuncio antes de guardar.</div>
+    </details>
+
+    <details>
+      <summary>¿Por qué aparece un anuncio al guardar?</summary>
+      <div class="faq-answer">Tapey es completamente gratuito. Para mantenerlo así, aparece un anuncio a pantalla completa una vez por guardado. Si el anuncio no carga, tu fondo se guarda de inmediato sin ningún problema.</div>
+    </details>
+
+    <details>
+      <summary>¿Mis fotos se suben a algún servidor?</summary>
+      <div class="faq-answer">No. Todo el procesamiento ocurre únicamente en tu dispositivo. Tus fotos nunca se suben, transmiten ni almacenan fuera de tu iPhone.</div>
+    </details>
+
+    <details>
+      <summary>¿Cómo establezco el fondo en mi iPhone?</summary>
+      <div class="faq-answer">Tras guardar, abre <strong>Ajustes → Fondo de pantalla → Agregar nuevo fondo</strong>, elige <strong>Fotos</strong> y selecciona la imagen que guardó Tapey. Elige la pantalla de bloqueo o de inicio y pulsa <strong>Establecer</strong>.</div>
+    </details>
+
+    <details>
+      <summary>La app no funciona o se cerró inesperadamente — ¿qué hago?</summary>
+      <div class="faq-answer">Intenta forzar el cierre y volver a abrir la app. Si el problema continúa, asegúrate de tener la versión más reciente del App Store. Si sigue ocurriendo, <a href="mailto:kvndh66@gmail.com">escríbenos</a> describiendo qué estabas haciendo — respondemos rápido.</div>
+    </details>
+
+    <details>
+      <summary>¿Se puede usar en iPad?</summary>
+      <div class="faq-answer">Tapey está diseñado para iPhone. En iPad funciona en modo de compatibilidad para iPhone, aunque el diseño está optimizado para pantallas de teléfono.</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>Contacto</h2>
+    <p>¿Tienes alguna pregunta, encontraste un error o simplemente quieres saludar?</p>
+    <p>Escríbenos a <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a> — leemos todos los mensajes.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey-privacy.html">Política de privacidad</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ PT -->
+<section class="lang-section" data-lang="pt">
+  <p class="app-desc">O Tapey transforma as suas fotos num papel de parede estilo galeria com fita washi — organizado automaticamente, editado de forma intuitiva e guardado diretamente na fototeca do iPhone.</p>
+
+  <div class="faq">
+    <h2>Perguntas frequentes</h2>
+
+    <details>
+      <summary>Como adiciono fotos?</summary>
+      <div class="faq-answer">Toque no botão <strong>+</strong> no ecrã vazio e escolha fotos da sua biblioteca ou tire uma nova com a câmara. Pode adicionar até 12 fotos por papel de parede.</div>
+    </details>
+
+    <details>
+      <summary>Como guardo o papel de parede?</summary>
+      <div class="faq-answer">Toque no botão <strong>Guardar</strong> na barra de ferramentas. O papel de parede é exportado em resolução máxima e guardado diretamente na fototeca do iPhone. Um breve anúncio poderá aparecer antes de guardar.</div>
+    </details>
+
+    <details>
+      <summary>Por que aparece um anúncio ao guardar?</summary>
+      <div class="faq-answer">O Tapey é completamente gratuito. Para se manter gratuito, um anúncio em ecrã inteiro aparece uma vez por cada guardado. Se o anúncio não carregar, o seu papel de parede é guardado imediatamente sem qualquer problema.</div>
+    </details>
+
+    <details>
+      <summary>As minhas fotos são carregadas para um servidor?</summary>
+      <div class="faq-answer">Não. Todo o processamento ocorre exclusivamente no seu dispositivo. As suas fotos nunca são carregadas, transmitidas ou armazenadas fora do seu iPhone.</div>
+    </details>
+
+    <details>
+      <summary>Como defino o papel de parede no iPhone?</summary>
+      <div class="faq-answer">Após guardar, abra <strong>Definições → Papel de parede → Adicionar novo papel de parede</strong>, escolha <strong>Fotos</strong> e selecione a imagem que o Tapey guardou. Escolha o ecrã de bloqueio ou o ecrã inicial e toque em <strong>Definir</strong>.</div>
+    </details>
+
+    <details>
+      <summary>A app não está a funcionar ou fechou inesperadamente — o que faço?</summary>
+      <div class="faq-answer">Tente forçar o fecho e reabrir a app. Se o problema persistir, certifique-se de que tem a versão mais recente da App Store. Se continuar a acontecer, <a href="mailto:kvndh66@gmail.com">envie-nos um e-mail</a> descrevendo o que estava a fazer — respondemos rapidamente.</div>
+    </details>
+
+    <details>
+      <summary>Pode ser usado no iPad?</summary>
+      <div class="faq-answer">O Tapey foi concebido para iPhone. No iPad, funciona em modo de compatibilidade com iPhone, mas o design está otimizado para ecrãs de telemóvel.</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>Contacto</h2>
+    <p>Tem alguma dúvida, encontrou um erro ou simplesmente quer dar uma boa notícia?</p>
+    <p>Envie-nos um e-mail para <a href="mailto:kvndh66@gmail.com">kvndh66@gmail.com</a> — lemos todas as mensagens.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/tapey-privacy.html">Política de Privacidade</a> &nbsp;·&nbsp; © 2026 Tapey</p>
+  </footer>
+</section>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.lang-btn');
+    var sections = document.querySelectorAll('.lang-section');
+
+    function switchLang(lang) {
+      buttons.forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+        btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+      });
+      sections.forEach(function (sec) {
+        sec.classList.toggle('visible', sec.dataset.lang === lang);
+      });
+      document.documentElement.lang = lang === 'zt' ? 'zh-Hant' : lang === 'zh' ? 'zh-Hans' : lang;
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        switchLang(btn.dataset.lang);
+      });
+    });
+
+    // Auto-detect browser language on load
+    var nav = (navigator.language || 'en').toLowerCase();
+    var detected = 'en';
+    if (nav.startsWith('ko')) detected = 'ko';
+    else if (nav.startsWith('ja')) detected = 'ja';
+    else if (nav === 'zh-tw' || nav === 'zh-hk' || nav === 'zh-hant') detected = 'zt';
+    else if (nav.startsWith('zh')) detected = 'zh';
+    else if (nav.startsWith('th')) detected = 'th';
+    else if (nav.startsWith('id')) detected = 'id';
+    else if (nav.startsWith('es')) detected = 'es';
+    else if (nav.startsWith('pt')) detected = 'pt';
+
+    if (detected !== 'en') switchLang(detected);
+  })();
+</script>
 </body>
 </html>
