@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>설마나겠냐; — 개인정보 처리방침</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0F0F17;
+      --panel: #1C1D2B;
+      --border: #32344A;
+      --ink: #F2EFE6;
+      --ink-soft: #B9B5C6;
+      --ink-faint: #7E7B8E;
+      --amber: #FFB63B;
+      --green: #59C978;
+      --clip: polygon(10px 0, calc(100% - 10px) 0, calc(100% - 10px) 5px, calc(100% - 5px) 5px, calc(100% - 5px) 10px, 100% 10px, 100% calc(100% - 10px), calc(100% - 5px) calc(100% - 10px), calc(100% - 5px) calc(100% - 5px), calc(100% - 10px) calc(100% - 5px), calc(100% - 10px) 100%, 10px 100%, 10px calc(100% - 5px), 5px calc(100% - 5px), 5px calc(100% - 10px), 0 calc(100% - 10px), 0 10px, 5px 10px, 5px 5px, 10px 5px);
+    }
+
+    html { background: var(--bg); color: var(--ink); }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      background:
+        radial-gradient(360px 160px at 50% -30px, rgba(255, 182, 59, 0.13), transparent 70%),
+        var(--bg);
+    }
+
+    .lamp-strip { text-align: center; }
+    .lamp-strip .cord { width: 2px; height: 26px; margin: 0 auto; background: #2A2C3E; }
+    .lamp-strip .bulb {
+      width: 9px; height: 9px; margin: 0 auto;
+      background: var(--amber); border-radius: 2px;
+      box-shadow: 0 0 18px 5px rgba(255, 182, 59, 0.5);
+    }
+
+    header {
+      padding: 22px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+
+    .header-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+
+    .wordmark { font-size: 1.7rem; font-weight: 900; line-height: 1.15; }
+    .wordmark span { color: var(--amber); text-shadow: 0 0 12px rgba(255, 182, 59, 0.65); }
+    .tagline { font-size: 0.92rem; color: var(--ink-soft); margin-top: 6px; }
+
+    .lang-switcher { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+    .lang-btn {
+      font-size: 0.72rem; font-family: inherit; padding: 4px 9px; border-radius: 20px;
+      border: 1px solid var(--border); background: transparent; color: var(--ink-soft);
+      cursor: pointer; white-space: nowrap;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .lang-btn:hover { background: var(--panel); color: var(--ink); }
+    .lang-btn.active { background: var(--amber); border-color: var(--amber); color: #221A05; font-weight: 700; }
+
+    .lang-section { display: none; }
+    .lang-section.visible { display: block; }
+
+    .tldr {
+      background: var(--panel);
+      clip-path: var(--clip);
+      padding: 22px 24px;
+      margin-bottom: 32px;
+    }
+
+    .tldr p { font-size: 1.02rem; font-weight: 700; }
+    .tldr p span { color: var(--green); }
+    .tldr small { display: block; margin-top: 6px; font-size: 0.85rem; font-weight: 400; color: var(--ink-soft); }
+
+    h2 {
+      font-size: 1.15rem; font-weight: 800;
+      margin: 28px 0 10px; padding-bottom: 6px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    p, li { font-size: 0.93rem; color: var(--ink-soft); }
+    strong { color: var(--ink); }
+    ul { padding-left: 20px; margin: 8px 0; }
+    li { margin-bottom: 6px; }
+
+    a { color: var(--amber); text-decoration: underline; text-underline-offset: 2px; }
+
+    footer {
+      font-size: 0.8rem; color: var(--ink-faint); text-align: center;
+      border-top: 1px solid var(--border); padding-top: 20px; margin-top: 40px;
+    }
+    footer a { text-decoration: none; }
+
+    @media (max-width: 480px) {
+      .header-top { flex-direction: column; }
+      .lang-switcher { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lamp-strip"><div class="cord"></div><div class="bulb"></div></div>
+
+<header>
+  <div class="header-top">
+    <div>
+      <div class="wordmark">설마나겠냐<span>;</span></div>
+      <div class="tagline" id="header-tagline">개인정보 처리방침 · Privacy Policy</div>
+    </div>
+    <nav class="lang-switcher" aria-label="Language">
+      <button class="lang-btn active" data-lang="ko">한국어</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="zh">简体中文</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════ KO -->
+<section class="lang-section visible" data-lang="ko">
+  <div class="tldr">
+    <p>한 줄 요약: <span>아무것도 수집하지 않습니다.</span></p>
+    <small>계정 없음 · 서버 없음 · 광고 없음 · 추적 없음 · 제3자 SDK 없음</small>
+  </div>
+
+  <h2>1. 수집하는 정보</h2>
+  <p><strong>없습니다.</strong> 설마나겠냐;는 개인정보를 포함해 어떤 데이터도 수집·전송·저장하지 않습니다. 회원가입이 없고, 운영 서버도 없으며, 분석(애널리틱스)·광고 SDK도 넣지 않았습니다.</p>
+
+  <h2>2. 기기 안에만 저장되는 것</h2>
+  <p>게임에 필요한 최소 설정은 <strong>내 iPhone 안에만</strong> 저장됩니다:</p>
+  <ul>
+    <li>게임에서 쓰는 표시 이름과 캐릭터 선택</li>
+    <li>이번 모임의 벌칙 전적(앱 안에서만 표시)</li>
+  </ul>
+  <p>이 정보는 기기 밖으로 나가지 않으며, 앱을 삭제하면 함께 삭제됩니다.</p>
+
+  <h2>3. 로컬 네트워크 권한을 쓰는 이유</h2>
+  <p>이 게임은 인터넷 없이 <strong>같은 공간의 폰끼리 직접 연결(P2P)</strong>해서 진행됩니다. 로컬 네트워크(및 Wi-Fi·Bluetooth) 권한은 오직 이 연결에만 쓰입니다. 오가는 데이터는 게임 신호(선택·결과)뿐이고, 참가자의 폰 사이에서만 이동하며, 어떤 외부 서버로도 전송되지 않습니다.</p>
+
+  <h2>4. 제3자 제공</h2>
+  <p>수집하는 것이 없으므로 제공할 것도 없습니다. 제3자 SDK, 광고 네트워크, 분석 도구를 사용하지 않습니다.</p>
+
+  <h2>5. 아동의 개인정보</h2>
+  <p>본 앱은 어떤 이용자의 개인정보도 수집하지 않으므로, 아동의 개인정보 또한 수집하지 않습니다.</p>
+
+  <h2>6. 방침 변경</h2>
+  <p>수집 항목이 생기는 변경(예: 유료 기능 도입)이 있다면 이 페이지를 먼저 갱신하고 시행일을 명시합니다.</p>
+
+  <h2>7. 문의</h2>
+  <p>개인정보 관련 문의: <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a></p>
+  <p>시행일: 2026년 7월 19일</p>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/seolma.html">지원 페이지</a> &nbsp;·&nbsp; © 2026 설마나겠냐;</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════ EN -->
+<section class="lang-section" data-lang="en">
+  <div class="tldr">
+    <p>One line: <span>We collect nothing.</span></p>
+    <small>No accounts · No servers · No ads · No tracking · No third-party SDKs</small>
+  </div>
+
+  <h2>1. Information we collect</h2>
+  <p><strong>None.</strong> The app does not collect, transmit, or store any data, personal or otherwise. There is no sign-up, no operating server, and no analytics or advertising SDK.</p>
+
+  <h2>2. What stays on your device</h2>
+  <p>The minimal settings needed for play are stored <strong>only on your iPhone</strong>:</p>
+  <ul>
+    <li>Your display name and character choice</li>
+    <li>This gathering's penalty tally (shown in-app only)</li>
+  </ul>
+  <p>This never leaves your device and is deleted when you delete the app.</p>
+
+  <h2>3. Why we ask for Local Network permission</h2>
+  <p>The game runs by <strong>connecting phones in the same room directly (peer-to-peer)</strong>, without internet. Local Network (and Wi-Fi/Bluetooth) access is used solely for this connection. The only data exchanged is game signals (choices and results), travelling between participants' phones and never to any external server.</p>
+
+  <h2>4. Sharing with third parties</h2>
+  <p>Since nothing is collected, there is nothing to share. No third-party SDKs, ad networks, or analytics tools are used.</p>
+
+  <h2>5. Children's privacy</h2>
+  <p>The app collects no personal information from any user, including children.</p>
+
+  <h2>6. Changes to this policy</h2>
+  <p>If a future change introduces any data collection (e.g., paid features), this page will be updated first with an effective date.</p>
+
+  <h2>7. Contact</h2>
+  <p>Privacy questions: <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a></p>
+  <p>Effective date: July 19, 2026</p>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/seolma.html">Support</a> &nbsp;·&nbsp; © 2026 설마나겠냐;</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════ JA -->
+<section class="lang-section" data-lang="ja">
+  <div class="tldr">
+    <p>要約: <span>何も収集しません。</span></p>
+    <small>アカウントなし · サーバーなし · 広告なし · トラッキングなし · 第三者SDKなし</small>
+  </div>
+
+  <h2>1. 収集する情報</h2>
+  <p><strong>ありません。</strong>本アプリは個人情報を含むいかなるデータも収集・送信・保存しません。会員登録も運用サーバーもなく、分析・広告SDKも使用していません。</p>
+
+  <h2>2. 端末内にのみ保存されるもの</h2>
+  <ul>
+    <li>ゲームで使う表示名とキャラクター選択</li>
+    <li>その集まりの罰ゲーム戦績（アプリ内表示のみ）</li>
+  </ul>
+  <p>これらは端末の外に出ることはなく、アプリを削除すると一緒に削除されます。</p>
+
+  <h2>3. ローカルネットワーク権限を使う理由</h2>
+  <p>本ゲームはインターネットなしで<strong>同じ空間のスマホ同士を直接接続（P2P）</strong>して進行します。権限はこの接続のためだけに使われ、やり取りされるのはゲーム信号（選択・結果）のみで、外部サーバーには一切送信されません。</p>
+
+  <h2>4. 第三者提供</h2>
+  <p>収集するものがないため、提供するものもありません。</p>
+
+  <h2>5. お問い合わせ</h2>
+  <p><a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a></p>
+  <p>施行日: 2026年7月19日</p>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/seolma.html">サポート</a> &nbsp;·&nbsp; © 2026 설마나겠냐;</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════ ZH -->
+<section class="lang-section" data-lang="zh">
+  <div class="tldr">
+    <p>一句话：<span>我们不收集任何数据。</span></p>
+    <small>无账号 · 无服务器 · 无广告 · 无追踪 · 无第三方SDK</small>
+  </div>
+
+  <h2>1. 我们收集的信息</h2>
+  <p><strong>没有。</strong>本App不收集、传输或存储任何数据（包括个人信息）。没有注册、没有运营服务器，也没有任何分析或广告SDK。</p>
+
+  <h2>2. 仅保存在设备上的内容</h2>
+  <ul>
+    <li>游戏中使用的昵称和角色选择</li>
+    <li>本次聚会的惩罚战绩（仅在App内显示）</li>
+  </ul>
+  <p>这些内容不会离开你的设备，删除App时会一并删除。</p>
+
+  <h2>3. 为什么需要本地网络权限</h2>
+  <p>本游戏无需互联网，通过<strong>同一空间内手机之间的直接连接（P2P）</strong>进行。该权限仅用于此连接，传输的只有游戏信号（选择与结果），仅在参与者的手机之间传递，绝不发送到任何外部服务器。</p>
+
+  <h2>4. 第三方共享</h2>
+  <p>既然什么都不收集，也就没有什么可共享的。</p>
+
+  <h2>5. 联系方式</h2>
+  <p><a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a></p>
+  <p>生效日期: 2026年7月19日</p>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/seolma.html">支持页面</a> &nbsp;·&nbsp; © 2026 설마나겠냐;</p>
+  </footer>
+</section>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.lang-btn');
+    var sections = document.querySelectorAll('.lang-section');
+    var taglines = {
+      ko: '개인정보 처리방침 · Privacy Policy',
+      en: 'Privacy Policy',
+      ja: 'プライバシーポリシー',
+      zh: '隐私政策'
+    };
+
+    function switchLang(lang) {
+      buttons.forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+        btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+      });
+      sections.forEach(function (sec) {
+        sec.classList.toggle('visible', sec.dataset.lang === lang);
+      });
+      document.getElementById('header-tagline').textContent = taglines[lang] || 'Privacy Policy';
+      document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : lang;
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () { switchLang(btn.dataset.lang); });
+    });
+
+    var nav = (navigator.language || 'ko').toLowerCase();
+    var detected = 'en';
+    if (nav.startsWith('ko')) detected = 'ko';
+    else if (nav.startsWith('ja')) detected = 'ja';
+    else if (nav.startsWith('zh')) detected = 'zh';
+
+    if (detected !== 'ko') switchLang(detected);
+  })();
+</script>
+</body>
+</html>

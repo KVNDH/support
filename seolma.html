@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>설마나겠냐; — 지원</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0F0F17;
+      --panel: #1C1D2B;
+      --panel2: #232435;
+      --border: #32344A;
+      --ink: #F2EFE6;
+      --ink-soft: #B9B5C6;
+      --ink-faint: #7E7B8E;
+      --amber: #FFB63B;
+      --amber-deep: #B87718;
+      --clip: polygon(10px 0, calc(100% - 10px) 0, calc(100% - 10px) 5px, calc(100% - 5px) 5px, calc(100% - 5px) 10px, 100% 10px, 100% calc(100% - 10px), calc(100% - 5px) calc(100% - 10px), calc(100% - 5px) calc(100% - 5px), calc(100% - 10px) calc(100% - 5px), calc(100% - 10px) 100%, 10px 100%, 10px calc(100% - 5px), 5px calc(100% - 5px), 5px calc(100% - 10px), 0 calc(100% - 10px), 0 10px, 5px 10px, 5px 5px, 10px 5px);
+    }
+
+    html { background: var(--bg); color: var(--ink); }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      background:
+        radial-gradient(360px 160px at 50% -30px, rgba(255, 182, 59, 0.13), transparent 70%),
+        var(--bg);
+    }
+
+    /* ── 램프 스트립 ── */
+    .lamp-strip { text-align: center; padding-top: 0; }
+    .lamp-strip .cord { width: 2px; height: 26px; margin: 0 auto; background: #2A2C3E; }
+    .lamp-strip .bulb {
+      width: 9px; height: 9px; margin: 0 auto;
+      background: var(--amber); border-radius: 2px;
+      box-shadow: 0 0 18px 5px rgba(255, 182, 59, 0.5);
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 22px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .wordmark {
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .wordmark span {
+      color: var(--amber);
+      text-shadow: 0 0 12px rgba(255, 182, 59, 0.65);
+    }
+
+    .tagline {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      margin-top: 8px;
+    }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+      max-width: 240px;
+    }
+
+    .lang-btn {
+      font-size: 0.72rem;
+      font-family: inherit;
+      padding: 4px 9px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+    }
+
+    .lang-btn:hover { background: var(--panel); border-color: var(--amber-deep); color: var(--ink); }
+
+    .lang-btn.active {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: #221A05;
+      font-weight: 700;
+    }
+
+    .lang-section { display: none; }
+    .lang-section.visible { display: block; }
+
+    .app-desc {
+      font-size: 1.02rem;
+      color: var(--ink-soft);
+      margin-bottom: 36px;
+      line-height: 1.75;
+    }
+
+    .app-desc strong { color: var(--ink); }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    /* ── FAQ ── */
+    .faq { margin-bottom: 40px; }
+
+    details { border-bottom: 1px solid var(--border); }
+    details:first-of-type { border-top: 1px solid var(--border); }
+
+    summary {
+      font-size: 0.97rem;
+      font-weight: 700;
+      padding: 14px 4px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: '+';
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--amber);
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after { transform: rotate(45deg); }
+
+    .faq-answer {
+      font-size: 0.93rem;
+      color: var(--ink-soft);
+      padding: 2px 4px 16px;
+      line-height: 1.75;
+    }
+
+    .faq-answer strong { color: var(--ink); }
+
+    .faq-answer a {
+      color: var(--amber);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      background: var(--panel);
+      clip-path: var(--clip);
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .contact p { font-size: 0.93rem; color: var(--ink-soft); margin-bottom: 10px; }
+    .contact a { color: var(--amber); text-decoration: none; font-weight: 700; }
+    .contact a:hover { text-decoration: underline; }
+
+    footer {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    footer a { color: var(--amber); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      .wordmark { font-size: 1.8rem; }
+      .lang-switcher { max-width: 100%; justify-content: flex-start; }
+      .header-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lamp-strip"><div class="cord"></div><div class="bulb"></div></div>
+
+<header>
+  <div class="header-top">
+    <div>
+      <div class="wordmark" id="header-wordmark">설마나겠냐<span>;</span></div>
+      <div class="tagline" id="header-tagline">지원 · Support</div>
+    </div>
+    <nav class="lang-switcher" aria-label="Language">
+      <button class="lang-btn active" data-lang="ko">한국어</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="zh">简体中文</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════ KO -->
+<section class="lang-section visible" data-lang="ko">
+  <p class="app-desc">설마나겠냐;는 같은 자리에 모인 사람들이 <strong>각자 자기 폰으로, 인터넷 없이</strong> 즐기는 복불복 파티게임입니다. 동시에 몰래 고르고 한꺼번에 열면, 걸린 사람의 벌칙은 룰렛이 정합니다. 운이 아니라, 선택이다.</p>
+
+  <div class="faq">
+    <h2>자주 묻는 질문</h2>
+
+    <details>
+      <summary>게임하려면 몇 명이 필요한가요?</summary>
+      <div class="faq-answer">같은 공간에 <strong>2명 이상</strong>, 각자 아이폰이 있으면 됩니다. 가위바위보·넘버픽은 2명부터, 소수결은 3명부터 열립니다. 인원 상한은 없습니다 — 20명도 됩니다.</div>
+    </details>
+
+    <details>
+      <summary>인터넷 없이 어떻게 연결되나요?</summary>
+      <div class="faq-answer">근거리의 폰끼리 직접 연결(P2P)합니다. 와이파이나 셀룰러 데이터가 꺼져 있어도 되고, 서버도 없습니다. 단, 기기의 <strong>와이파이·블루투스 스위치 자체는 켜져</strong> 있어야 연결 통로로 쓸 수 있습니다.</div>
+    </details>
+
+    <details>
+      <summary>연결이 안 돼요.</summary>
+      <div class="faq-answer">① 첫 실행 때 나오는 <strong>로컬 네트워크 권한</strong>을 허용했는지 확인하세요 (설정 → 앱 → 설마나겠냐 → 로컬 네트워크). ② 제어 센터에서 와이파이·블루투스가 켜져 있는지 확인하세요. ③ 앱을 완전히 종료하고 다시 열어 '판 열기'/'참여하기'를 다시 시도하세요. ④ 기기끼리 가까이(같은 방 안에) 있어야 합니다.</div>
+    </details>
+
+    <details>
+      <summary>게임 도중에 앱을 내리면 어떻게 되나요?</summary>
+      <div class="faq-answer">앱을 백그라운드로 내리면 연결이 끊길 수 있습니다. 다시 앱을 열고 <strong>'참여하기'</strong>를 누르면 진행 중인 판에 다시 들어갑니다.</div>
+    </details>
+
+    <details>
+      <summary>효과음이 안 들려요.</summary>
+      <div class="faq-answer">설마나겠냐;는 <strong>무음 스위치를 존중</strong>합니다. 무음 모드에서는 소리 대신 진동(햅틱)만 울리는 게 정상입니다. 소리를 들으려면 무음 스위치를 해제하세요.</div>
+    </details>
+
+    <details>
+      <summary>제 데이터는 어디로 가나요?</summary>
+      <div class="faq-answer">아무 데도 안 갑니다. 계정도, 서버도, 광고도 없고 <strong>아무것도 수집하지 않습니다</strong>. 게임 신호는 옆 사람 폰으로만 오갑니다. 자세한 내용은 <a href="https://kvndh.github.io/support/seolma-privacy.html">개인정보 처리방침</a>을 보세요.</div>
+    </details>
+
+    <details>
+      <summary>앱이 이상하거나 튕겨요.</summary>
+      <div class="faq-answer">앱을 완전히 종료 후 다시 실행해 보세요. 계속되면 App Store에서 최신 버전인지 확인하고, 그래도 문제가 있으면 어떤 상황이었는지(인원·게임·화면) 적어서 <a href="mailto:kvndh36@naver.com">메일</a>로 알려주세요. 빠르게 답합니다.</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>문의</h2>
+    <p>질문, 버그 제보, 새 게임 아이디어 — 뭐든 환영합니다.</p>
+    <p><a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a> 으로 보내주세요. 전부 읽습니다.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/seolma-privacy.html">개인정보 처리방침</a> &nbsp;·&nbsp; © 2026 설마나겠냐;</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ EN -->
+<section class="lang-section" data-lang="en">
+  <p class="app-desc">Not Me… Right? (설마나겠냐;) is a party game for people in the same room — <strong>everyone plays on their own phone, no internet needed</strong>. Pick in secret, reveal together, and a roulette decides the loser's penalty. It's not luck — it's your choice.</p>
+
+  <div class="faq">
+    <h2>FAQ</h2>
+
+    <details>
+      <summary>How many players do I need?</summary>
+      <div class="faq-answer"><strong>2 or more people</strong> in the same room, each with an iPhone. Rock-Paper-Scissors and Number Pick open at 2 players; the Minority game needs 3. There is no upper limit — 20 works too.</div>
+    </details>
+
+    <details>
+      <summary>How does it connect without internet?</summary>
+      <div class="faq-answer">Phones connect directly to each other (peer-to-peer). Wi-Fi networks and cellular data are not needed and there is no server. However, the <strong>Wi-Fi and Bluetooth switches themselves must be on</strong> — they are the transport.</div>
+    </details>
+
+    <details>
+      <summary>We can't connect.</summary>
+      <div class="faq-answer">① Make sure you allowed <strong>Local Network</strong> permission on first launch (Settings → Apps → the app → Local Network). ② Check that Wi-Fi and Bluetooth are enabled in Control Center. ③ Force-quit the app, reopen, and try Host / Join again. ④ Stay close together — same room.</div>
+    </details>
+
+    <details>
+      <summary>What happens if I background the app mid-game?</summary>
+      <div class="faq-answer">The connection may drop. Reopen the app and tap <strong>Join</strong> to rejoin the room in progress.</div>
+    </details>
+
+    <details>
+      <summary>No sound?</summary>
+      <div class="faq-answer">The app <strong>respects the silent switch</strong>. In silent mode you get haptics only — flip the switch to hear sounds.</div>
+    </details>
+
+    <details>
+      <summary>Where does my data go?</summary>
+      <div class="faq-answer">Nowhere. No accounts, no servers, no ads, and <strong>nothing is collected</strong>. Game signals travel only between the phones in the room. See the <a href="https://kvndh.github.io/support/seolma-privacy.html">Privacy Policy</a>.</div>
+    </details>
+
+    <details>
+      <summary>The app crashed or misbehaves.</summary>
+      <div class="faq-answer">Force-quit and relaunch. If it persists, check you're on the latest App Store version, then <a href="mailto:kvndh36@naver.com">email us</a> what happened (player count, game, screen) — we respond quickly.</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>Contact</h2>
+    <p>Questions, bug reports, penalty ideas — all welcome.</p>
+    <p>Email <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a> — we read every message.</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/seolma-privacy.html">Privacy Policy</a> &nbsp;·&nbsp; © 2026 설마나겠냐;</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ JA -->
+<section class="lang-section" data-lang="ja">
+  <p class="app-desc">まさか自分…（설마나겠냐;）は、同じ場所に集まった仲間が<strong>それぞれ自分のスマホで、インターネットなし</strong>で遊べる罰ゲーム決めパーティーゲームです。同時にこっそり選んで、一斉にオープン。当たった人の罰はルーレットが決めます。</p>
+
+  <div class="faq">
+    <h2>よくある質問</h2>
+
+    <details>
+      <summary>何人から遊べますか？</summary>
+      <div class="faq-answer">同じ空間に<strong>2人以上</strong>、各自iPhoneがあればOK。じゃんけんとナンバーピックは2人から、少数決は3人から。人数の上限はありません。</div>
+    </details>
+
+    <details>
+      <summary>インターネットなしでどうやってつながるの？</summary>
+      <div class="faq-answer">近くのスマホ同士が直接つながります（P2P）。Wi-Fiネットワークやモバイルデータは不要でサーバーもありません。ただし本体の<strong>Wi-Fi・Bluetoothスイッチはオン</strong>にしておいてください（通信経路として使います）。</div>
+    </details>
+
+    <details>
+      <summary>つながりません。</summary>
+      <div class="faq-answer">① 初回起動時の<strong>ローカルネットワーク権限</strong>を許可したか確認（設定 → アプリ → 本アプリ → ローカルネットワーク）。② コントロールセンターでWi-Fi・Bluetoothがオンか確認。③ アプリを完全に終了して再起動し、もう一度ホスト／参加を試す。④ 同じ部屋の近い距離で。</div>
+    </details>
+
+    <details>
+      <summary>音が出ません。</summary>
+      <div class="faq-answer">本アプリは<strong>消音スイッチを尊重</strong>します。消音モード中は振動のみが正常動作です。</div>
+    </details>
+
+    <details>
+      <summary>データはどこに送られますか？</summary>
+      <div class="faq-answer">どこにも送られません。アカウントもサーバーも広告もなく、<strong>何も収集しません</strong>。詳細は<a href="https://kvndh.github.io/support/seolma-privacy.html">プライバシーポリシー</a>へ。</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>お問い合わせ</h2>
+    <p>質問・不具合報告など、お気軽にどうぞ。</p>
+    <p><a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a> までメールください。すべて読んでいます。</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/seolma-privacy.html">プライバシーポリシー</a> &nbsp;·&nbsp; © 2026 설마나겠냐;</p>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ ZH -->
+<section class="lang-section" data-lang="zh">
+  <p class="app-desc">不会是我吧…（설마나겠냐;）是一款同场聚会游戏 — <strong>每人用自己的手机、无需互联网</strong>直接连接。同时偷偷做出选择，一起揭晓，中招的人由轮盘决定惩罚。不是运气，是你的选择。</p>
+
+  <div class="faq">
+    <h2>常见问题</h2>
+
+    <details>
+      <summary>需要几个人才能玩？</summary>
+      <div class="faq-answer">同一空间内<strong>2人以上</strong>，每人一部iPhone。猜拳和数字挑选2人即可，少数决需要3人。人数没有上限。</div>
+    </details>
+
+    <details>
+      <summary>没有网络怎么连接？</summary>
+      <div class="faq-answer">附近的手机之间直接连接（P2P），不需要Wi-Fi网络或流量，也没有服务器。但设备的<strong>Wi-Fi和蓝牙开关需要打开</strong>（作为传输通道）。</div>
+    </details>
+
+    <details>
+      <summary>连接不上怎么办？</summary>
+      <div class="faq-answer">① 确认首次启动时允许了<strong>本地网络权限</strong>（设置 → App → 本App → 本地网络）。② 确认控制中心里Wi-Fi和蓝牙已打开。③ 完全退出App后重新打开，再次尝试开局／加入。④ 保持近距离（同一房间内）。</div>
+    </details>
+
+    <details>
+      <summary>没有声音？</summary>
+      <div class="faq-answer">本App<strong>遵循静音开关</strong>。静音模式下只有震动反馈，属于正常现象。</div>
+    </details>
+
+    <details>
+      <summary>我的数据会被发送到哪里？</summary>
+      <div class="faq-answer">哪儿也不去。没有账号、没有服务器、没有广告，<strong>不收集任何数据</strong>。详见<a href="https://kvndh.github.io/support/seolma-privacy.html">隐私政策</a>。</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>联系我们</h2>
+    <p>问题、Bug反馈都欢迎。</p>
+    <p>请发邮件至 <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a>，每封都会看。</p>
+  </div>
+
+  <footer>
+    <p><a href="https://kvndh.github.io/support/seolma-privacy.html">隐私政策</a> &nbsp;·&nbsp; © 2026 설마나겠냐;</p>
+  </footer>
+</section>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.lang-btn');
+    var sections = document.querySelectorAll('.lang-section');
+    var taglines = { ko: '지원 · Support', en: 'Support', ja: 'サポート', zh: '支持' };
+
+    function switchLang(lang) {
+      buttons.forEach(function (btn) {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+        btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+      });
+      sections.forEach(function (sec) {
+        sec.classList.toggle('visible', sec.dataset.lang === lang);
+      });
+      document.getElementById('header-tagline').textContent = taglines[lang] || 'Support';
+      document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : lang;
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () { switchLang(btn.dataset.lang); });
+    });
+
+    var nav = (navigator.language || 'ko').toLowerCase();
+    var detected = 'en';
+    if (nav.startsWith('ko')) detected = 'ko';
+    else if (nav.startsWith('ja')) detected = 'ja';
+    else if (nav.startsWith('zh')) detected = 'zh';
+
+    if (detected !== 'ko') switchLang(detected);
+  })();
+</script>
+</body>
+</html>
