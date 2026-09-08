@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slowbrush — Support</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f7;
+      color: #1d1d1f;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e5e5ea;
+      padding: 20px 24px;
+    }
+
+    header a {
+      font-size: 13px;
+      color: #0071e3;
+      text-decoration: none;
+    }
+
+    header a:hover { text-decoration: underline; }
+
+    header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    header p {
+      font-size: 12px;
+      color: #86868b;
+      margin-top: 2px;
+    }
+
+    main {
+      max-width: 680px;
+      margin: 48px auto;
+      padding: 0 24px;
+      flex: 1;
+    }
+
+    .lang-section {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .lang-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #86868b;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    h2:first-of-type { margin-top: 0; }
+
+    p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #3a3a3c;
+    }
+
+    ul { margin: 8px 0 0 20px; }
+
+    ul li {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #3a3a3c;
+    }
+
+    a.inline { color: #0071e3; text-decoration: none; }
+    a.inline:hover { text-decoration: underline; }
+
+    .contact {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #f0f0f0;
+      font-size: 13px;
+      color: #86868b;
+    }
+
+    .contact a { color: #0071e3; text-decoration: none; }
+    .contact a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: #aeaeb2;
+    }
+
+    footer a { color: #aeaeb2; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="./">&larr; kvndh apps</a>
+    <h1>Slowbrush &mdash; Support</h1>
+    <p>Paint photos by hand</p>
+  </header>
+
+  <main>
+    <!-- English -->
+    <div class="lang-section">
+      <div class="lang-label">English</div>
+
+      <h2>About Slowbrush</h2>
+      <p>Slowbrush puts a photo underneath your canvas and lets you paint it by rubbing the screen with your finger. Paint lands in the colour of whatever is under your fingertip, and it builds up real thickness that catches the light. It is not a filter &mdash; you have to cover the canvas yourself.</p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h2 style="font-size:15px;">Where do my photos go?</h2>
+      <p>Nowhere. The app has no server and never connects to the internet. You pick one photo through the standard iOS picker, which hands over only that image &mdash; the app cannot see the rest of your library. Saving a finished painting uses <strong>add-only</strong> access, so the app can add an image but still cannot read anything.</p>
+
+      <h2 style="font-size:15px;">Why does the app ask me to rub the whole canvas?</h2>
+      <p>Because that is the app. There is no one-tap conversion, and there will not be one. The point is the time you put in, which is why the time-lapse ends by telling you how many strokes it took.</p>
+
+      <h2 style="font-size:15px;">Can I change the brush?</h2>
+      <p>There are four brushes &mdash; Dab, Glaze, Bristle and Knife &mdash; in six sizes. That is deliberately the only thing you can adjust. Everything else is your hand.</p>
+
+      <h2 style="font-size:15px;">My painting disappeared after I picked a new photo.</h2>
+      <p>Changing the photo clears the canvas, and the app asks before it does. It has to: the colour of every stroke is read back from the photo when the painting is redrawn, so keeping old strokes over a new photo would show you colours that were never there. Undo cannot bring it back &mdash; save the painting first.</p>
+
+      <h2 style="font-size:15px;">The time-lapse is shorter than I expected.</h2>
+      <p>Export is a fixed length so it fits social video. To watch the whole thing at your own pace, use <strong>Replay</strong> inside the app &mdash; it goes down to 0.25&times; speed and you can scrub by dragging across the canvas.</p>
+
+      <h2 style="font-size:15px;">Does it work offline?</h2>
+      <p>Always. There is no account, no sync and no network code in the app at all.</p>
+
+      <div class="contact">
+        Questions or bug reports: <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a><br>
+        Privacy policy: <a class="inline" href="./privacy-none.html">privacy-none.html</a>
+      </div>
+    </div>
+
+    <!-- Korean -->
+    <div class="lang-section">
+      <div class="lang-label">한국어</div>
+
+      <h2>Slowbrush 소개</h2>
+      <p>사진 한 장을 밑그림으로 깔고, 손가락으로 문질러 그 자리의 색을 물감으로 얹습니다. 물감은 실제로 두꺼워지고 빛을 받아 그림자를 만듭니다. 필터가 아니므로 화면 전체를 직접 문질러야 그림이 완성됩니다.</p>
+
+      <h2>자주 묻는 질문</h2>
+
+      <h2 style="font-size:15px;">제 사진은 어디로 가나요?</h2>
+      <p>아무 데도 가지 않습니다. 서버가 없고 인터넷에 연결하지 않습니다. 사진은 iOS 표준 선택기로 고르며, 그 방식은 고른 한 장만 앱에 넘깁니다 — 보관함 전체를 볼 수 없습니다. 완성작을 저장할 때는 <strong>추가 전용</strong> 권한만 쓰므로, 앱은 사진을 넣기만 하고 읽지는 못합니다.</p>
+
+      <h2 style="font-size:15px;">왜 화면 전체를 문질러야 하나요?</h2>
+      <p>그것이 이 앱이기 때문입니다. 한 번에 바꿔 주는 기능은 없고, 앞으로도 넣지 않습니다. 들인 시간이 결과물의 일부라서, 타임랩스 끝에 몇 번을 문질렀는지가 함께 남습니다.</p>
+
+      <h2 style="font-size:15px;">붓을 바꿀 수 있나요?</h2>
+      <p>Dab · Glaze · Bristle · Knife 네 자루, 크기는 여섯 단계입니다. 조절할 수 있는 것은 의도적으로 그것뿐입니다.</p>
+
+      <h2 style="font-size:15px;">새 사진을 고르자 그림이 사라졌어요.</h2>
+      <p>사진을 바꾸면 캔버스가 비워지며, 그 전에 물어봅니다. 그래야 합니다 — 붓질의 색은 그림을 다시 그릴 때 사진에서 다시 뽑히므로, 새 사진 위에 옛 붓질을 남기면 없던 색이 나옵니다. 되돌리기로도 복구되지 않습니다 — 먼저 저장하세요.</p>
+
+      <h2 style="font-size:15px;">타임랩스가 생각보다 짧아요.</h2>
+      <p>내보내기는 SNS 규격에 맞춰 길이가 고정돼 있습니다. 천천히 보고 싶다면 앱 안의 <strong>리플레이</strong>를 쓰세요 — 0.25배속까지 느려지고, 캔버스를 좌우로 끌어 원하는 지점으로 갈 수 있습니다.</p>
+
+      <h2 style="font-size:15px;">오프라인에서도 되나요?</h2>
+      <p>항상 됩니다. 계정도, 동기화도, 네트워크 코드 자체가 없습니다.</p>
+
+      <div class="contact">
+        문의·버그 제보: <a href="mailto:kvndh36@naver.com">kvndh36@naver.com</a><br>
+        개인정보 처리방침: <a class="inline" href="./privacy-none.html">privacy-none.html</a>
+      </div>
+    </div>
+</main>
+
+  <footer>
+    &copy; 2026 kvndh apps
+  </footer>
+</body>
+</html>
